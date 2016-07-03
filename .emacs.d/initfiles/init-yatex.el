@@ -1,0 +1,13 @@
+(setq auto-mode-alist
+      (append '(("\\.tex$" . yatex-mode)
+                ("\\.ltx$" . yatex-mode)
+                ("\\.cls$" . yatex-mode)
+                ("\\.sty$" . yatex-mode)
+                ("\\.clo$" . yatex-mode)
+                ("\\.bbl$" . yatex-mode)) auto-mode-alist))
+(setq YaTeX-kanji-code 4)
+(setq tex-command "platex")
+(setq dvi2-command "xdvi")
+(setq bibtex-command "pbibtex")
+(setq dviprint-command-format "dvipdfmx")
+(add-hook 'yatex-mode-hook '(lambda () (auto-fill-mode -1)))

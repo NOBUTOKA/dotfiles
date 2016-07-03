@@ -1,0 +1,7 @@
+(defun cc-mode-init ()
+  (setq c-auto-newline t)
+  (setq c-hungry-delete-key t)
+  (setq c-basic-offset 4)
+  (setq tab-width 4)
+  )
+(add-hook 'c-mode-hook 'cc-mode-init)
