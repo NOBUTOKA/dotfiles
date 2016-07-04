@@ -64,7 +64,12 @@
 (el-get-bundle auto-complete-c-headers)
 (el-get-bundle smartparens)
 (el-get-bundle howm)
+(el-get-bundle request
+  :type git
+  :url "https://github.com/tkf/emacs-request")
 (el-get-bundle niconama
   :type git
   :url "https://github.com/NOBUTOKA/niconama.el"
-  :pkgname NOBUTOKA/niconama.el)
+  :pkgname NOBUTOKA/niconama.el
+  :depends request)
+(el-get-bundle markdown-mode)
