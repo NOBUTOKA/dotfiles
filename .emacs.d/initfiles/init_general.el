@@ -42,9 +42,10 @@
   :type http-tar
   :url "http://liquidtelecom.dl.sourceforge.net/project/cc-mode/cc-mode/5.32.5/cc-mode-5.32.5.tar.gz"
   :options ("xzf"))
-(el-get-bundle! bind-key)
 (el-get-bundle! company in company-mode)
 
+(el-get-bundle tarao/with-eval-after-load-feature-el)
+(el-get-bundle! elpa:bind-key)
 (el-get-bundle ddskk)
 (el-get-bundle evil)
 (el-get-bundle ggtags)
@@ -62,14 +63,17 @@
 (el-get-bundle magit-gh-pulls
   :depends (gh magit pcache s))
 (el-get-bundle mew)
-(el-get-bundle yatex)
+(el-get-bundle yatex
+  :type hg
+  :url "http://www.yatex.org/hgrepos/yatex"
+  :branch "dev")
 (el-get-bundle helm-company)
 (el-get-bundle irony-mode)
 (el-get-bundle company-irony)
 (el-get-bundle flycheck-irony)
 (el-get-bundle rtags)
 (el-get-bundle smartparens)
-(el-get-bundle howm)
+(el-get-bundle yasnippet)
 (el-get-bundle request
   :type git
   :url "https://github.com/tkf/emacs-request")
@@ -78,7 +82,9 @@
   :url "https://github.com/NOBUTOKA/niconama.el"
   :pkgname NOBUTOKA/niconama.el
   :branch "develop"
-  :depends request)
+  :depends (request))
 (el-get-bundle markdown-mode)
 (el-get-bundle all)
 (el-get-bundle all-ext)
+(el-get-bundle company-jedi)
+(el-get-bundle autopep8)
