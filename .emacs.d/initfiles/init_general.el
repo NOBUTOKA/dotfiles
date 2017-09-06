@@ -38,10 +38,7 @@
     (eval-print-last-sexp)))
 (setq el-get-user-package-directory (concat user-emacs-directory "initfiles"))
 
-(el-get-bundle! cc-mode
-  :type http-tar
-  :url "http://liquidtelecom.dl.sourceforge.net/project/cc-mode/cc-mode/5.32.5/cc-mode-5.32.5.tar.gz"
-  :options ("xzf"))
+(el-get-bundle! cc-mode)
 (el-get-bundle! company in company-mode)
 
 (el-get-bundle tarao/with-eval-after-load-feature-el)
