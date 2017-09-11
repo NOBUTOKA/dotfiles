@@ -10,7 +10,8 @@ autoload -Uz colors
 colors
 case ${UID} in
 0)
-    PROMPT="%B%{[31m%}%/#%{[m%}%b "
+    PROMPT="%B%{$fg[green]%}[%n@%m]$%{$reset_color%}%b "
+    RPROMPT="%B%{$fg[cyan]%}[%~]%{$reset_color%}%b"
     PROMPT2="%B%{[31m%}%_#%{[m%}%b "
     SPROMPT="%B%{[31m%}%r is correct? [n,y,a,e]:%{[m%}%b "
     [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
@@ -19,7 +20,7 @@ case ${UID} in
 *)
     PROMPT="%{$fg[green]%}[%n@%m]$%{$reset_color%} "
     RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
-    PROMPT2="%{[32m%}%_%%%{[m%} "
+    PROMPT2="%{$fg[green]%}%_%%%{$reset_color%} "
     SPROMPT="%{[32m%}%r is correct? [n,y,a,e]:%{[m%} "
     [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
         PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
@@ -83,3 +84,9 @@ setopt list_packed
 
 # Emacsライクキーバインド設定
 bindkey -e 
+
+
+# ローカル設定の読み込み
+if [ -e ~/.zshlocal ]; then
+    source ~/.zshlocal
+fi
