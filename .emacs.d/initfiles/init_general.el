@@ -43,6 +43,7 @@
 
 (el-get-bundle tarao/with-eval-after-load-feature-el)
 (el-get-bundle! elpa:bind-key)
+(el-get-bundle codic)
 (el-get-bundle ddskk)
 (el-get-bundle evil)
 (el-get-bundle ggtags)
@@ -81,3 +82,8 @@
 (el-get-bundle all-ext)
 (el-get-bundle company-jedi)
 (el-get-bundle autopep8)
+(el-get-bundle mopemope/meghanada-emacs
+  :name mogehanada)
+(el-get-bundle haskell-mode)
+(el-get-bundle ghc-mod)
+(el-get-bundle company-ghc)
