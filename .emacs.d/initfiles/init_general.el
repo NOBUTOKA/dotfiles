@@ -42,6 +42,8 @@
 (el-get-bundle! company in company-mode)
 
 (el-get-bundle tarao/with-eval-after-load-feature-el)
+(el-get-bundle org-mode)
+(el-get-bundle open-junk-file)
 (el-get-bundle! elpa:bind-key)
 (el-get-bundle codic)
 (el-get-bundle ddskk)
@@ -53,10 +55,7 @@
 (el-get-bundle helm-projectile)
 (el-get-bundle semantic-refactor)
 (el-get-bundle flycheck)
-(el-get-bundle helm-make
-  :type git
-  :url "https://github.com/abo-abo/helm-make.git"
-  :pkgname abo-abo/helm-make)
+(el-get-bundle abo-abo/helm-make)
 (el-get-bundle magit)
 (el-get-bundle magit-gh-pulls
   :depends (gh magit pcache s))
