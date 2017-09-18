@@ -41,10 +41,10 @@
 (el-get-bundle! cc-mode)
 (el-get-bundle! company in company-mode)
 
+(el-get-bundle! elpa:bind-key)
 (el-get-bundle tarao/with-eval-after-load-feature-el)
 (el-get-bundle org-mode)
 (el-get-bundle open-junk-file)
-(el-get-bundle! elpa:bind-key)
 (el-get-bundle codic)
 (el-get-bundle ddskk)
 (el-get-bundle evil)
