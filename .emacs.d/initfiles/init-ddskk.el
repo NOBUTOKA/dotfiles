@@ -7,6 +7,7 @@
 (setq skk-use-color-cursor t)
 (setq skk-indicator-use-cursor-color t)
 (setq skk-server-host "localhost")
+(setq skk-server-portnum 1178)
 (setq skk-server-prog "/usr/local/sbin/yaskkserv")
 (setq skk-server-jisyo "~/.yaskkserv/SKK-JISYO.L.yaskkserv ~/.yaskkserv/SKK-JISYO.propernoun.yaskkserv")
 (setq skk-server-inhibit-startup-server nil)

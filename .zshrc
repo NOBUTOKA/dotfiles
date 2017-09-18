@@ -1,6 +1,6 @@
 autoload -U compinit promptinit
 compinit
-promptinit; prompt gentoo
+promptinit
 
 #ロケール設定
 export LANG=ja_JP.UTF-8
