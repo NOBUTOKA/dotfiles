@@ -12,4 +12,6 @@
 (setq skk-server-jisyo "~/.yaskkserv/SKK-JISYO.L.yaskkserv ~/.yaskkserv/SKK-JISYO.propernoun.yaskkserv")
 (setq skk-server-inhibit-startup-server nil)
 (setq skk-tut-file (concat user-emacs-directory "el-get/ddskk/etc/SKK.tut"))
-(bind-key "C-j" 'skk-kakutei)
+(with-eval-after-load-feature 'use-package
+			     (bind-key "C-j" 'skk-kakutei)
+			     )
