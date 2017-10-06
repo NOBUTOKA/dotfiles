@@ -23,7 +23,24 @@
 	("g" "Google it Later" entry (file+headline "~/org/DoItLater.org" "GiL")
 	 "* %? \n%T\n%i %a")
 	("i" "Idea" entry (file+headline "~/org/notes.org" "Ideas")
-	 "* %? \n%T\n%i %a")))
+	 "* %? \n%T\n%i %a")
+	("l" "Lecture Note" entry (file "~/org/LectureNote.org")
+	 "* \n:SUBJECT: %?\n%t"
+	 :jump-to-captured 1)))
 
 (add-hook 'org-mode-hook 'skk-activate)
 
+(with-eval-after-load-feature 'ox-latex
+  (setq org-latex-default-class "ltjsarticle")
+  (setq org-latex-compiler "lualatex")
+;;; ドキュメントクラスの追加
+  (add-to-list 'org-latex-classes
+	       '("ltjsarticle"
+		 "\\documentclass[12pt]{ltjsarticle}"
+		 ("\\section{%s}" . "\\section*{%s}")
+		 ("\\subsection{%s}" . "\\subsection*{%s}")
+		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+		 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+		 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")
+		 ))
+  )
