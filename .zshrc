@@ -47,6 +47,16 @@ zplug load --verbose
 #C-rのようにC-sを使う(フロー制御を無効化)
 setopt no_flow_control
 
+# word-chars で指定した文字が単語の区切りとみなされる。
+# M-f, M-b, ^w などの動作に影響する
+WORDCHARS='.'
+autoload -Uz select-word-style
+select-word-style default 
+zstyle ':zle:*' word-chars ' /=;@:{}[]()<>,|.'
+zstyle ':zle:*' word-style unspecified
+
+#sudo時に環境変数を引き継ぎ
+alias sudo='sudo -E '
 #sudo補完
 zstyle ':completion:*:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 

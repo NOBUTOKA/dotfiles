@@ -20,7 +20,7 @@
 	      (font-lock-mode)
 	      (imenu-add-menubar-index)
 	      ;; GHCi のコマンドを設定
-	      (setq haskell-program-name "/usr/bin/ghci") ;; stack の場合
+	      (setq haskell-program-name-with-args '("/usr/bin/stack" . "-O"))
 	      (interactive-haskell-mode)
 	      )
 	  )
