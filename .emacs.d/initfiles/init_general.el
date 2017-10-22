@@ -87,4 +87,6 @@
 (el-get-bundle haskell-mode)
 (el-get-bundle ghc-mod)
 (el-get-bundle company-ghc)
-
+(el-get-bundle multi-term)
+(el-get-bundle helm-shell-history)
+(el-get-bundle! ChillarAnand/real-auto-save)
