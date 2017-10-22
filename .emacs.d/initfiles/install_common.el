@@ -1,0 +1,20 @@
+(el-get-bundle! company in company-mode/company-mode)
+(el-get-bundle! use-package)
+(el-get-bundle! with-eval-after-load-feature
+  in tarao/with-eval-after-load-feature-el)
+(el-get-bundle ddskk)
+(el-get-bundle helm)
+(el-get-bundle projectile)
+(el-get-bundle helm-projectile)
+(el-get-bundle helm-company)
+(el-get-bundle smartparens)
+(el-get-bundle all)
+(el-get-bundle all-ext)
+(el-get-bundle flycheck)
+(el-get-bundle magit)
+(el-get-bundle magit-gh-pulls
+  :depends (gh magit pcache s))
+(el-get-bundle codic)
+(el-get-bundle mew)
+(el-get-bundle yasnippet)
+
