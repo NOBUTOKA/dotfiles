@@ -1,3 +1,8 @@
+# Install zplug
+# curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
+# Install fzf
+# git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf ;~/.fzf/install
+
 autoload -U compinit promptinit
 compinit
 promptinit
@@ -32,6 +37,9 @@ source ~/.zplug/init.zsh
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-completions'
 zplug 'zsh-users/zsh-syntax-highlighting'
+zplug "b4b4r07/enhancd", use:init.sh
+zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
+zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then

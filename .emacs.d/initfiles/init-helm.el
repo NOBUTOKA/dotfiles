@@ -1,16 +1,21 @@
 ;;from https://monolog.linkode.co.jp/articles/kotoh/Emacs%E3%81%A7helm%E3%82%92%E4%BD%BF%E3%81%86
 
 (helm-mode 1)
-(define-key global-map (kbd "C-x C-f") 'helm-find-files)
-(define-key global-map (kbd "M-x")     'helm-M-x)
-(define-key global-map (kbd "C-x C-r") 'helm-recentf)
-(define-key global-map (kbd "M-y")     'helm-show-kill-ring)
-(define-key global-map (kbd "C-c i")   'helm-imenu)
-(define-key global-map (kbd "C-x b")   'helm-buffers-list)
-(define-key helm-map (kbd "C-h") 'delete-backward-char)
-(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
-(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
-(define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
+
+(with-eval-after-load-feature 'use-package
+  (bind-key "C-;" 'helm-mini)
+  (bind-key "C-x C-f" 'helm-find-files)
+  (bind-key "M-x" 'helm-M-x)
+  (bind-key "C-x C-r" 'helm-recentf)
+  (bind-key "M-y" 'helm-show-kill-ring)
+  (bind-key "C-c i" 'helm-semantic-or-imenu)
+  (bind-key "C-x b" 'helm-buffer-list)
+  (bind-key "C-h" 'delete-backward-char)
+  (bind-key "<tab>" 'helm-execute-persistent-action helm-map) ; rebind tab to do persistent action
+  (bind-key "C-i" 'helm-execute-persistent-action helm-map) ; make TAB works in terminal
+  (bind-key "C-z"  'helm-select-action helm-map) ; list actions using C-z
+  )
+
 
 (defvar helm-source-emacs-commands
   (helm-build-sync-source "Emacs commands"
@@ -33,6 +38,3 @@
     :coerce #'intern-soft
     :action #'command-execute)
   "Emacs commands history")
-
-(define-key global-map (kbd "C-;") 'helm-mini)
-(define-key global-map (kbd "M-y") 'helm-show-kill-ring)
