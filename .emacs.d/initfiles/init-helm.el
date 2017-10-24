@@ -9,7 +9,7 @@
   (bind-key "C-x C-r" 'helm-recentf)
   (bind-key "M-y" 'helm-show-kill-ring)
   (bind-key "C-c i" 'helm-semantic-or-imenu)
-  (bind-key "C-x b" 'helm-buffer-list)
+  (bind-key "C-x b" 'helm-buffers-list)
   (bind-key "C-h" 'delete-backward-char)
   (bind-key "<tab>" 'helm-execute-persistent-action helm-map) ; rebind tab to do persistent action
   (bind-key "C-i" 'helm-execute-persistent-action helm-map) ; make TAB works in terminal

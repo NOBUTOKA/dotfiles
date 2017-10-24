@@ -37,8 +37,7 @@ source ~/.zplug/init.zsh
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-completions'
 zplug 'zsh-users/zsh-syntax-highlighting'
-zplug "b4b4r07/enhancd", use:init.sh
-zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
+zplug "b4b4r07/enhancd", hook-load:init.sh
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 
 # Install plugins if there are plugins that have not been installed
@@ -108,3 +107,15 @@ bindkey -e
 if [ -e ~/.zshlocal ]; then
     source ~/.zshlocal
 fi
+
+# fzfのインストール
+if [ -f ~/.fzf.zsh ]; then
+    source ~/.fzf.zsh
+elif [ -f ~/.zplug/repos/junegunn/fzf/install ]; then
+    ~/.zplug/repos/junegunn/fzf/install --no-update-rc
+else
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install --no-update-rc
+fi
+
+    
