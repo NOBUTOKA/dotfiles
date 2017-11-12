@@ -1,2 +1,5 @@
+(el-get-bundle python-mode)
 (el-get-bundle company-jedi)
 (el-get-bundle autopep8)
+(el-get-bundle virtualenvwrapper)
+(el-get-bundle auto-virtualenvwrapper in robert-zaremba/auto-virtualenvwrapper.el)

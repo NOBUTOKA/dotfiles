@@ -3,6 +3,7 @@
 (el-get-bundle! use-package)
 (el-get-bundle! with-eval-after-load-feature
   in tarao/with-eval-after-load-feature-el)
+(el-get-bundle! keyfreq)
 (el-get-bundle ddskk)
 (el-get-bundle helm)
 (el-get-bundle projectile)

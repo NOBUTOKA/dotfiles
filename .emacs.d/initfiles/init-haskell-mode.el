@@ -1,3 +1,5 @@
+(autoload 'haskell-cabal "haskell-cabal" nil t)
+
 (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
 (add-to-list 'auto-mode-alist '("\\.lhs$" . literate-haskell-mode))
 (add-to-list 'auto-mode-alist '("\\.cabal\\'" . haskell-cabal-mode))
@@ -24,6 +26,13 @@
 	      (interactive-haskell-mode)
 	      )
 	  )
+
+(with-eval-after-load-feature 'flycheck
+  (add-hook 'haskell-mode-hook
+	    '(lambda ()
+             (setq flycheck-checker 'haskell-hlint)
+             (flycheck-mode 1))))
+
 
 (defadvice inferior-haskell-load-file (after change-focus-after-load)
   "Change focus to GHCi window after C-c C-l command"
