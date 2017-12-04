@@ -10,3 +10,4 @@
 (add-hook 'c++-mode-hook 'setup-flycheck-clang-project-path)
 
 (setq-default flycheck-emacs-lisp-load-path 'inherit)
+(setq flycheck-pylint-use-symbolic-id t)
