@@ -29,6 +29,7 @@
 	 :jump-to-captured 1)))
 
 (add-hook 'org-mode-hook 'skk-activate)
+(add-hook 'org-mode-hook 'yas-global-mode)
 
 (with-eval-after-load-feature 'ox-latex
   (setq org-latex-default-class "ltjsarticle")

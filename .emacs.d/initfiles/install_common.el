@@ -3,6 +3,7 @@
 (el-get-bundle! use-package)
 (el-get-bundle! with-eval-after-load-feature
   in tarao/with-eval-after-load-feature-el)
+(el-get-bundle! yasnippet)
 (el-get-bundle! keyfreq)
 (el-get-bundle ddskk)
 (el-get-bundle helm)
@@ -18,5 +19,4 @@
   :depends (gh magit pcache s))
 (el-get-bundle codic)
 (el-get-bundle mew)
-(el-get-bundle yasnippet)
-
+(el-get-bundle helm-c-yasnippet)
