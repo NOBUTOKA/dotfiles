@@ -40,10 +40,11 @@
 
 (load (concat user-emacs-directory "initfiles/install_common.el"))
 (load (concat user-emacs-directory "initfiles/install_c.el"))
-;(load (concat user-emacs-directory "initfiles/install_haskell.el"))
 (load (concat user-emacs-directory "initfiles/install_latex.el"))
 (load (concat user-emacs-directory "initfiles/install_markdown.el"))
 (load (concat user-emacs-directory "initfiles/install_niconama.el"))
 (load (concat user-emacs-directory "initfiles/install_org.el"))
 (load (concat user-emacs-directory "initfiles/install_python.el"))
 (load (concat user-emacs-directory "initfiles/install_shell.el"))
+;; (load (concat user-emacs-directory "initfiles/install_rust.el"))
+;; (load (concat user-emacs-directory "initfiles/install_haskell.el"))
