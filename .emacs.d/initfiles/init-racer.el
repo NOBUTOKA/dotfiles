@@ -1,0 +1,7 @@
+(add-to-list 'exec-path (expand-file-name "~/.cargo/bin/"))
+(setq-default rust-format-on-save nil)
+(add-hook 'rust-mode-hook (lambda ()
+                            (racer-mode)
+                            (flycheck-rust-setup)
+			    (company-mode)))
+(add-hook 'racer-mode-hook #'eldoc-mode)
