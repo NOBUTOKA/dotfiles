@@ -7,6 +7,7 @@
 (el-get-bundle! keyfreq)
 (el-get-bundle ddskk)
 (el-get-bundle helm)
+(el-get-bundle helm-tramp)
 (el-get-bundle projectile)
 (el-get-bundle helm-projectile)
 (el-get-bundle helm-company)
@@ -20,3 +21,4 @@
 (el-get-bundle codic)
 (el-get-bundle mew)
 (el-get-bundle helm-c-yasnippet)
+(el-get-bundle gnuplot-mode)
