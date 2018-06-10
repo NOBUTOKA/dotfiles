@@ -12,3 +12,4 @@
 (setq bibtex-command "upbibtex")
 (setq dviprint-command-format "dvipdfmx")
 (add-hook 'yatex-mode-hook '(lambda () (auto-fill-mode -1)))
+(add-hook 'yatex-mode-hook 'yas-global-mode)
