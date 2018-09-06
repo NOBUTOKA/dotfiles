@@ -3,5 +3,5 @@
   :depends (pdf-tools))
 (el-get-bundle open-junk-file)
 (el-get-bundle ox-reveal)
-(el-get-bundle org2blog
-  :depends (htmlize xml-rpc metaweblog))
+;; (el-get-bundle org2blog
+;;   :depends (htmlize xml-rpc metaweblog))
