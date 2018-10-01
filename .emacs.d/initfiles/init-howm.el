@@ -1,5 +1,6 @@
 (setq howm-menu-lang 'ja)
-(global-set-key "\C-c,," 'howm-menu)
+(with-eval-after-load-feature 'bind-key
+  (bind-key* "C-c , ," 'howm-menu))
 (mapc
  (lambda (f)
    (autoload f

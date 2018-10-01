@@ -1,4 +1,3 @@
-(global-set-key [muhenkan] 'skk-mode)
 (setq default-input-method "japanese-skk")
 (setq skk-japanese-message-and-error t)
 (setq skk-version-codename-ja t)
@@ -12,6 +11,7 @@
 (setq skk-server-jisyo "~/.yaskkserv/SKK-JISYO.L.yaskkserv ~/.yaskkserv/SKK-JISYO.propernoun.yaskkserv")
 (setq skk-server-inhibit-startup-server nil)
 (setq skk-tut-file (concat user-emacs-directory "el-get/ddskk/etc/SKK.tut"))
-(with-eval-after-load-feature 'use-package
+(with-eval-after-load-feature 'bind-key
+  (bind-key* "<muhenkan>" 'skk-mode)
   (bind-key* "C-j" 'skk-kakutei)
   )

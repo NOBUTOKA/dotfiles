@@ -9,7 +9,9 @@
 
 (defun c++-mode-hooks()
   (font-lock-add-keywords
-    nil '(
-      ("\\<\\(alignof\\|alignas\\|constexpr\\|decltype\\|noexcept\\|nullptr\\|static_assert\\|thread_local\\|override\\|final\\)\\>" . 'font-lock-keyword-face)
-    )))
+   nil '(
+	 ("\\<\\(alignof\\|alignas\\|constexpr\\|decltype\\|noexcept\\|nullptr\\|static_assert\\|thread_local\\|override\\|final\\)\\>"
+	  . 'font-lock-keyword-face)
+	 )
+   ))
 (add-hook 'c++-mode-hook 'c++-mode-hooks)

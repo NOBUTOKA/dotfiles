@@ -1,4 +1,8 @@
-(eval-after-load 'makefile-mode
-  '(define-key makefile-mode-map (kbd "M-\"") 'helm-make-projectile))
-(define-key c-mode-map (kbd "M-\"") 'helm-make-projectile)
-(define-key c++-mode-map (kbd "M-\"") 'helm-make-projectile)
+(with-eval-after-load-feature 'bind-key
+  (with-eval-after-load-feature 'makefile-mode
+    (bind-key "M-\"" 'helm-make-projectile makefile-mode-map))
+  (with-eval-after-load-feature 'c-mode
+    (bind-key "M-\"" 'helm-make-projectile c-mode-map))
+  (with-eval-after-load-feature 'c++-mode
+    (bind-key "M-\"" 'helm-make-projectile c++-mode-map))
+  )

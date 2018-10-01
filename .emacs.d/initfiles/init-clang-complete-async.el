@@ -5,4 +5,3 @@
 
 (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
 (add-hook 'auto-complete-mode-hook 'ac-common-setup)
-(global-auto-complete-mode t)
