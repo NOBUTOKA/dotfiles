@@ -1,10 +1,11 @@
 (el-get-bundle! exec-path-from-shell)
-(el-get-bundle! company in company-mode/company-mode)
 (el-get-bundle! use-package)
 (el-get-bundle! with-eval-after-load-feature
   in tarao/with-eval-after-load-feature-el)
-(el-get-bundle! yasnippet)
 (el-get-bundle! keyfreq)
+(el-get-bundle! ChillarAnand/real-auto-save)
+(el-get-bundle yasnippet)
+(el-get-bundle company in company-mode/company-mode)
 (el-get-bundle ddskk)
 (el-get-bundle helm)
 (el-get-bundle helm-tramp)

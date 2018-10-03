@@ -2,20 +2,20 @@
 
 (helm-mode 1)
 
-(with-eval-after-load-feature 'use-package
-  (bind-key "C-;" 'helm-mini)
-  (bind-key "C-x C-f" 'helm-find-files)
-  (bind-key "M-x" 'helm-M-x)
-  (bind-key "C-x C-r" 'helm-recentf)
-  (bind-key "M-y" 'helm-show-kill-ring)
-  (bind-key "C-c i" 'helm-semantic-or-imenu)
-  (bind-key "C-x b" 'helm-buffers-list)
-  (bind-key "C-h" 'delete-backward-char)
-  (bind-key "<tab>" 'helm-execute-persistent-action helm-map) ; rebind tab to do persistent action
-  (bind-key "C-i" 'helm-execute-persistent-action helm-map) ; make TAB works in terminal
-  (bind-key "C-z"  'helm-select-action helm-map) ; list actions using C-z
+(with-eval-after-load-feature 'bind-key
+  (bind-keys*
+   ("C-;". helm-mini)
+   ("C-x C-f". helm-find-files)
+   ("M-x". helm-M-x)
+   ("C-x C-r". helm-recentf)
+   ("M-y". helm-show-kill-ring)
+   ("C-c i". helm-semantic-or-imenu)
+   ("C-x b". helm-buffers-list))
+  (bind-keys :map helm-map
+	     ("<tab>". helm-execute-persistent-action) ;rebind tab to do persistent action
+	     ("C-i". helm-execute-persistent-action)	;make TAB works in terminal
+	     ("C-z". helm-select-action))		;list actions using C-z
   )
-
 
 (defvar helm-source-emacs-commands
   (helm-build-sync-source "Emacs commands"

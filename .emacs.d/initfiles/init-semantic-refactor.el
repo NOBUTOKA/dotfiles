@@ -1,2 +1,5 @@
-(define-key c-mode-map (kbd "M-RET") 'srefactor-refactor-at-point)
-(define-key c++-mode-map (kbd "M-RET") 'srefactor-refactor-at-point)
+(with-eval-after-load-feature 'bind-key
+  (with-eval-after-load-feature 'c-mode
+    (bind-key "M-RET" 'srefactor-refactor-at-point c-mode-map))
+  (with-eval-after-load-feature 'c++-mode
+    (bind-key "M-RET" 'srefactor-refactor-at-point c++-mode-map)))

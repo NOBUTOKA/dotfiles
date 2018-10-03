@@ -1,5 +1,4 @@
-(add-hook 'term-mode-hook
-	  (lambda () (define-key term-raw-map (kbd "C-r") 'helm-shell-history))
-	  )
+(with-eval-after-load-feature (bind-key term-mode)
+  (bind-key "C-r" 'helm-shell-history term-raw-map))
 
 (setq helm-shell-history-file "~/.zsh_history")
