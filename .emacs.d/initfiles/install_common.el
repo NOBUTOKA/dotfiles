@@ -1,3 +1,4 @@
+(el-get-bundle auto-complete)
 (el-get-bundle! exec-path-from-shell)
 (el-get-bundle! use-package)
 (el-get-bundle! with-eval-after-load-feature
