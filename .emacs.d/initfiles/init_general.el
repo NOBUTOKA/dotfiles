@@ -48,4 +48,4 @@
 (load (concat user-emacs-directory "initfiles/install_shell.el"))
 (load (concat user-emacs-directory "initfiles/install_plantuml.el"))
 (load (concat user-emacs-directory "initfiles/install_rust.el"))
-;; (load (concat user-emacs-directory "initfiles/install_haskell.el"))
+(load (concat user-emacs-directory "initfiles/install_haskell.el"))

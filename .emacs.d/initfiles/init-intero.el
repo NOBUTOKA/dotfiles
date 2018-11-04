@@ -24,4 +24,3 @@
 	    '(lambda ()
              (setq flycheck-checker 'haskell-hlint)
              (flycheck-mode 1))))
-
