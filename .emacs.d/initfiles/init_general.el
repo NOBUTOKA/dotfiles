@@ -9,11 +9,10 @@
 ;; assign C-h as Backspace
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
-;;font config
-(add-to-list 'default-frame-alist '(font . "源ノ角ゴシック Code JP M-10.5"))
-
 ;; change custom-set-variables location
 (setq custom-file (locate-user-emacs-file "custom.el"))
+;; load custom-set-variables
+(load custom-file)
 
 ;;language config
 (setq default-buffer-file-coding-system 'utf-8-unix)
