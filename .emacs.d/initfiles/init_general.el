@@ -12,7 +12,8 @@
 ;; change custom-set-variables location
 (setq custom-file (locate-user-emacs-file "custom.el"))
 ;; load custom-set-variables
-(load custom-file)
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 ;;language config
 (setq default-buffer-file-coding-system 'utf-8-unix)
