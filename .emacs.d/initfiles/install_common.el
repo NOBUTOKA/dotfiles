@@ -18,9 +18,10 @@
 (el-get-bundle all-ext)
 (el-get-bundle flycheck)
 (el-get-bundle magit)
-(el-get-bundle magit-gh-pulls
-  :depends (gh magit pcache s))
-(el-get-bundle jtatarik/magit-gitflow)
+;; (el-get-bundle magit-gh-pulls
+;;   :depends (gh magit pcache s magit-popup))
+(el-get-bundle jtatarik/magit-gitflow
+  :depends (magit-popup))
 (el-get-bundle codic)
 (el-get-bundle mew)
 (el-get-bundle helm-c-yasnippet)
