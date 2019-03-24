@@ -1,6 +1,5 @@
 !! urxvt設定
 URxvt.scrollBar:	false
-URxvt.font:	 	xft:"源ノ角ゴシック Normal"
 URxvt*loginShell:  true
 ! カラースキーム(Tango dark)
 ! Tango color palette
