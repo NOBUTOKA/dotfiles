@@ -2,8 +2,8 @@ Emacs*useXIM:	false
 
 !! urxvt設定
 URxvt.scrollBar:	false
-URxvt.font:	 	xft:"源ノ角ゴシック Normal"-12
-urxvt*loginShell:  true
+URxvt.font:	 	xft:HackGen Console-12
+URxvt*loginShell:  true
 ! カラースキーム(Tango dark)
 ! Tango color palette
 URxvt*background:         #2e3436
