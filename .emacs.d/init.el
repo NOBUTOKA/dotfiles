@@ -20,4 +20,3 @@
 (setq init_host (concat user-emacs-directory "init_" (system-name) "_aft.el"))
 (when (file-exists-p init_host)
   (load-file init_host))
-

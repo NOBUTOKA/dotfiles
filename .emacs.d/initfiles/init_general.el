@@ -38,6 +38,9 @@
     (eval-print-last-sexp)))
 (setq el-get-user-package-directory (concat user-emacs-directory "initfiles"))
 
+;; bind Xdefaults-mode with .xconf file(e. g. urxvt.xconf)
+(add-to-list 'auto-mode-alist '("\\.xconf\\'" . conf-xdefaults-mode))
+
 (load (concat user-emacs-directory "initfiles/install_common.el"))
 (load (concat user-emacs-directory "initfiles/install_c.el"))
 (load (concat user-emacs-directory "initfiles/install_latex.el"))
