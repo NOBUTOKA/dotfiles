@@ -102,6 +102,8 @@ setopt list_packed
 # Emacsライクキーバインド設定
 bindkey -e 
 
+# moshでsshの補完
+compdef mosh=ssh
 
 # ローカル設定の読み込み
 if [ -e ~/.zshlocal ]; then
