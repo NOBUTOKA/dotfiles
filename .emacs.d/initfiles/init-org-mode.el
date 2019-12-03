@@ -37,16 +37,24 @@
 ;;; ドキュメントクラスの追加
   (add-to-list 'org-latex-classes
 	       '("ltjsarticle"
-		 "\\documentclass[12pt]{ltjsarticle}"
+		 "\\RequirePackage[l2tabu, orthodox]{nag}
+\\documentclass[12pt]{ltjsarticle}
+[NO-DEFAULT-PACKAGES]
+\\usepackage{graphicx}
+\\usepackage{longtable}
+\\usepackage{wrapfig}
+\\usepackage{rotating}
+\\usepackage[normalem]{ulem}
+\\usepackage{amsmath}
+\\usepackage{amssymb}
+\\usepackage{capt-of}
+\\usepackage{hyperref}"
 		 ("\\section{%s}" . "\\section*{%s}")
 		 ("\\subsection{%s}" . "\\subsection*{%s}")
 		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
 		 ("\\paragraph{%s}" . "\\paragraph*{%s}")
 		 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")
 		 ))
-  (add-to-list 'org-latex-packages-alist '("" "newtxtext") t)
-  (add-to-list 'org-latex-packages-alist '("" "newtxmath") t)
-  (add-to-list 'org-latex-packages-alist "\\RequirePackage[l2tabu, orthodox]{nag}")
   (add-to-list 'org-latex-packages-alist "\\numberwithin{equation}{section}" t)
   (add-to-list 'org-latex-packages-alist "\\hypersetup{unicode=true}" t)
   (delete '("" "textcomp" t) org-latex-default-packages-alist)
