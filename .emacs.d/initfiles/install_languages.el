@@ -1,0 +1,9 @@
+(el-get-bundle cc-mode)
+(el-get-bundle markdown-mode)
+(el-get-bundle skuro/plantuml-mode)
+(el-get-bundle python-mode)
+(el-get-bundle rust-mode)
+(el-get-bundle yatex
+  :type hg
+  :url "http://www.yatex.org/hgrepos/yatex"
+  :branch "dev")
