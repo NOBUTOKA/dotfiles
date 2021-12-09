@@ -13,5 +13,6 @@
 (setq skk-tut-file (concat user-emacs-directory "el-get/ddskk/etc/SKK.tut"))
 (with-eval-after-load-feature 'bind-key
   (bind-key* "<muhenkan>" 'skk-mode)
+  (bind-key* "C-c C-j" 'skk-mode)
   (bind-key* "C-j" 'skk-kakutei)
   )
