@@ -40,6 +40,8 @@
 
 ;; bind Xdefaults-mode with .xconf file(e. g. urxvt.xconf)
 (add-to-list 'auto-mode-alist '("\\.xconf\\'" . conf-xdefaults-mode))
+;; bind sh-mode with .zshlocal
+(add-to-list 'auto-mode-alist '(".zshlocal" . sh-mode))
 
 (load (concat user-emacs-directory "initfiles/install_common.el"))
 (load (concat user-emacs-directory "initfiles/install_languages.el"))
