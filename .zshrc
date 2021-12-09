@@ -7,10 +7,14 @@ autoload -U compinit promptinit
 compinit
 promptinit
 
-#ロケール設定
+# 補完ファイルのパスを追加
+mkdir -p ~/.zsh/completions
+fpath=(~/.zsh/completions ${fpath})
+
+# ロケール設定
 export LANG=ja_JP.UTF-8
 
-#プロンプト設定
+# プロンプト設定
 autoload -Uz colors
 colors
 case ${UID} in
@@ -32,7 +36,7 @@ case ${UID} in
     ;;
 esac 
 
-#zplug設定
+# zplug設定
 source ~/.zplug/init.zsh
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-completions'
@@ -51,7 +55,7 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load --verbose
 
-#C-rのようにC-sを使う(フロー制御を無効化)
+# C-rのようにC-sを使う(フロー制御を無効化)
 setopt no_flow_control
 
 # word-chars で指定した文字が単語の区切りとみなされる。
@@ -62,17 +66,17 @@ select-word-style default
 zstyle ':zle:*' word-chars ' /=;@:{}[]()<>,|.'
 zstyle ':zle:*' word-style unspecified
 
-#sudo時に環境変数を引き継ぎ
+# sudo時に環境変数を引き継ぎ
 alias sudo='sudo -E '
-#sudo補完
+# sudo補完
 zstyle ':completion:*:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 
-#lsとパス補完を色付け
+# lsとパス補完を色付け
 alias ls="ls -a --color=auto"
 zstyle ':completion:*' list-colors "${LS_COLORS}"
 
-#from:
-#http://ama-ch.hatenablog.com/entry/20090109/1231526834
+# from:
+# http://ama-ch.hatenablog.com/entry/20090109/1231526834
 # コマンド履歴
 HISTFILE=~/.zsh_history
 HISTSIZE=6000000
