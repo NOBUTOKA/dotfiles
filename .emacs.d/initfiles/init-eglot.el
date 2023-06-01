@@ -4,7 +4,7 @@
 
 (add-hook 'c-mode-hook 'eglot-ensure)
 (add-hook 'c++-mode-hook 'eglot-ensure)
-(add-hook 'rust-mode-hook 'eglot-ensure)
+(add-hook 'rustic-mode-hook 'eglot-ensure)
 (add-hook 'python-mode-hook 'eglot-ensure)
 
 (add-hook 'eglot-managed-mode-hook 'company-mode)
@@ -14,4 +14,5 @@
   (bind-keys :map eglot-mode-map
 	     ("C-c f" . eglot-format)
 	     ("C-c r n" . eglot-rename))
+  (add-to-list 'eglot-server-programs '(rustic-mode . ("rust-analyzer")))
   )
