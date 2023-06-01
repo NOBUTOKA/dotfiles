@@ -4,7 +4,7 @@
   in tarao/with-eval-after-load-feature-el)
 (el-get-bundle! keyfreq)
 (el-get-bundle! ChillarAnand/real-auto-save)
-(el-get-bundle ddskk)
+(el-get-bundle! ddskk)
 (el-get-bundle yasnippet)
 (el-get-bundle company in company-mode/company-mode)
 (el-get-bundle elpa:eldoc)
