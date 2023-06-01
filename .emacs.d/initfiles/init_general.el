@@ -45,6 +45,6 @@
 
 (load (concat user-emacs-directory "initfiles/install_common.el"))
 (load (concat user-emacs-directory "initfiles/install_languages.el"))
-(load (concat user-emacs-directory "initfiles/install_niconama.el"))
+;; (load (concat user-emacs-directory "initfiles/install_niconama.el"))
 (load (concat user-emacs-directory "initfiles/install_org.el"))
 (load (concat user-emacs-directory "initfiles/install_shell.el"))
