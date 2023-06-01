@@ -8,10 +8,12 @@
 (el-get-bundle yasnippet)
 (el-get-bundle company in company-mode/company-mode)
 (el-get-bundle elpa:eldoc)
+(el-get-bundle elpa:external-completion)
+(el-get-bundle elpa:project)
 (el-get-bundle elpa:flymake)
 (el-get-bundle elpa:jsonrpc)
 (el-get-bundle eglot
-  :depends (eldoc flymake jsonrpc))
+  :depends (eldoc flymake jsonrpc project external-completion))
 (el-get-bundle jojojames/smart-jump
   :depends dumb-jump
   (smart-jump-setup-default-registers))
