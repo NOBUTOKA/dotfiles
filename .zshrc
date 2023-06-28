@@ -1,5 +1,7 @@
 # Install zplug
-# curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
+if [[ ! -d ~/.zplug ]];then
+   curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
+fi
 # Install fzf
 # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf ;~/.fzf/install
 
