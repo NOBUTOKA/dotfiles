@@ -4,6 +4,7 @@
 
 (add-hook 'c-mode-hook 'eglot-ensure)
 (add-hook 'c++-mode-hook 'eglot-ensure)
+(add-hook 'cmake-mode-hook 'eglot-ensure)
 (add-hook 'rustic-mode-hook 'eglot-ensure)
 (add-hook 'python-mode-hook 'eglot-ensure)
 

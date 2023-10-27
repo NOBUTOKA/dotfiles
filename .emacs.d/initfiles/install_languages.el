@@ -1,4 +1,10 @@
 (el-get-bundle cc-mode)
+(el-get-bundle cmake-mode)
+(el-get-bundle pniedzielski/doxymacs
+  :load-path ("./lisp")
+  :build (("./bootstrap") ("./configure") ("make"))
+  :prepare (progn
+             (autoload 'doxymacs-mode "doxymacs" nil t)))
 (el-get-bundle markdown-mode)
 (el-get-bundle skuro/plantuml-mode)
 (el-get-bundle python-mode)
