@@ -1,8 +1,3 @@
-;; emacs-server config
-(require 'server)
-(unless (server-running-p)
-  (server-start))
-
 ;; color theme config
 (load-theme 'tango-dark t)
 
@@ -42,6 +37,9 @@
 (add-to-list 'auto-mode-alist '("\\.xconf\\'" . conf-xdefaults-mode))
 ;; bind sh-mode with .zshlocal
 (add-to-list 'auto-mode-alist '(".zshlocal" . sh-mode))
+
+;; disable-bell
+(setq ring-bell-function 'ignore)
 
 (load (concat user-emacs-directory "initfiles/install_common.el"))
 (load (concat user-emacs-directory "initfiles/install_languages.el"))
