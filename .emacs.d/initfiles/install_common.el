@@ -32,4 +32,4 @@
 (el-get-bundle mew)
 (el-get-bundle helm-c-yasnippet)
 (el-get-bundle gnuplot-mode)
-(el-get-bundle howm)
+;; (el-get-bundle howm)
