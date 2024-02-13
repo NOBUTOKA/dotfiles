@@ -127,7 +127,18 @@ else
     ~/.fzf/install --no-update-rc
 fi
 
-    
+# Emacs daemon関連
+function estart() {
+  if ! emacsclient -e 0 > /dev/null 2>&1; then
+    emacs --daemon
+  fi
+}
+
+alias ec="emacsclient --create-frame --no-wait"
+alias ekill="emacsclient -e '(kill-emacs)'"
+alias erestart="emacsclient -e '(kill-emacs)' && estart"
+export EDITOR='emacsclient --tty'
+estart
 
 # pip zsh completion start
 function _pip_completion {
