@@ -7,6 +7,7 @@
 (add-hook 'cmake-mode-hook 'eglot-ensure)
 (add-hook 'rustic-mode-hook 'eglot-ensure)
 (add-hook 'python-mode-hook 'eglot-ensure)
+(add-hook 'ruby-mode-hook 'eglot-ensure)
 
 (add-hook 'eglot-managed-mode-hook 'company-mode)
 (add-hook 'eglot-managed-mode-hook 'yas-minor-mode)
