@@ -16,4 +16,5 @@
 	     ("C-c f" . eglot-format)
 	     ("C-c r n" . eglot-rename))
   (add-to-list 'eglot-server-programs '(rustic-mode . ("rust-analyzer")))
+  (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) "ruby-lsp"))
   )
