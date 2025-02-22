@@ -7,9 +7,12 @@
 (add-hook 'cmake-mode-hook 'eglot-ensure)
 (add-hook 'rustic-mode-hook 'eglot-ensure)
 (add-hook 'python-mode-hook 'eglot-ensure)
+(add-hook 'julia-mode-hook 'eglot-ensure)
 
 (add-hook 'eglot-managed-mode-hook 'company-mode)
 (add-hook 'eglot-managed-mode-hook 'yas-minor-mode)
+
+(eglot-jl-init)
 
 (with-eval-after-load-feature (bind-key eglot)
   (bind-keys :map eglot-mode-map
