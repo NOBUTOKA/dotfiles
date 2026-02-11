@@ -1,5 +1,6 @@
 ;; 即座にrequireされるもの
 (leaf exec-path-from-shell
+  :if (memq system-type '(gnu/linux darwin))
   :straight t
   :require t
   :config
