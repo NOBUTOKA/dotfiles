@@ -23,6 +23,33 @@
 ;;dired文字コードの設定
 (setq dired-default-file-coding-system 'utf-8-unix)
 
+;; Straight.el bootstrap
+(setq package-enable-at-startup nil)
+;; Use develop branch beacuse of native-compilation compatibility.
+;; https://jeffkreeftmeijer.com/emacs-straight-use-package/
+(setq straight-repository-branch "develop")
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+
+;; Install leaf (using straight.el)
+(straight-use-package 'leaf)
+(straight-use-package 'leaf-keywords)
+(leaf-keywords-init)
+
 ;; El-Get config
 (add-to-list 'load-path (locate-user-emacs-file "el-get/el-get"))
 (unless (require 'el-get nil 'noerror)
