@@ -66,15 +66,15 @@
 
 (leaf eglot
   :straight t
-  :hook ((c-mode-hook . eglot-ensure)
+  :hook ((eglot-managed-mode-hook . company-mode)
+	 (eglot-managed-mode-hook . yas-minor-mode)
+	 (c-mode-hook . eglot-ensure)
 	 (c++-mode-hook . eglot-ensure)
 	 (cmake-mode-hook . eglot-ensure)
-	 (rustic-mode-hook . eglot-ensure)
-	 (python-mode-hook . eglot-ensure)
 	 (julia-mode-hook . eglot-ensure)
+	 (python-mode-hook . eglot-ensure)
 	 (ruby-mode-hook . eglot-ensure)
-	 (eglot-managed-mode-hook . company-mode)
-	 (eglot-managed-mode-hook . yas-minor-mode))
+	 (rustic-mode-hook . eglot-ensure))
   :bind (eglot-mode-map
 	 (("C-c f" . eglot-format)
 	  ("C-c r n" . eglot-rename)))
