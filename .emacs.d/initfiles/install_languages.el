@@ -50,7 +50,6 @@
   :custom (plantuml-output-type . "png")
 	   (plantuml-options . "-charset UTF-8")
   :bind ((plantuml-mode-map
-	  :package plantuml-mode
 	  ("C-c C-c" . plantuml-preview-current-block))))
 
 (leaf python*
