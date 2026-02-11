@@ -50,16 +50,6 @@
 (straight-use-package 'leaf-keywords)
 (leaf-keywords-init)
 
-;; El-Get config
-(add-to-list 'load-path (locate-user-emacs-file "el-get/el-get"))
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
-(setq el-get-user-package-directory (concat user-emacs-directory "initfiles"))
-
 ;; bind Xdefaults-mode with .xconf file(e. g. urxvt.xconf)
 (add-to-list 'auto-mode-alist '("\\.xconf\\'" . conf-xdefaults-mode))
 ;; bind sh-mode with .zshlocal
