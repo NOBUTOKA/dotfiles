@@ -32,7 +32,7 @@
   (leaf julia-repl :straight t)
   (leaf eglot-jl
     :straight t
-    :defer-config (eglot-jl-init)))
+    :hook (julia-mode-hook . eglot-jl-init)))
 
 (leaf doxymacs
   :straight (doxymacs :type git :host github :repo "pniedzielski/doxymacs" :files ("lisp/*.el"))
