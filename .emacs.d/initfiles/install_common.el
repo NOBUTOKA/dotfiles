@@ -57,6 +57,7 @@
 	 (c-mode-hook . eglot-ensure)
 	 (c++-mode-hook . eglot-ensure)
 	 (cmake-mode-hook . eglot-ensure)
+	 (csharp-mode-hook . eglot-ensure)
 	 (julia-mode-hook . eglot-ensure)
 	 (python-mode-hook . eglot-ensure)
 	 (ruby-mode-hook . eglot-ensure)
@@ -65,7 +66,8 @@
 	 (("C-c f" . eglot-format)
 	  ("C-c r n" . eglot-rename)))
   :defer-config
-  (add-to-list 'eglot-server-programs '(rustic-mode . ("rust-analyzer")))
+  (add-to-list 'eglot-server-programs '(csharp-mode . "csharp-ls"))
+  (add-to-list 'eglot-server-programs '(rustic-mode . "rust-analyzer"))
   (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) "ruby-lsp")))
 
 (leaf company
