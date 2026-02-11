@@ -14,22 +14,6 @@
   (keyfreq-mode 1)
   (keyfreq-autosave-mode 1))
 
-(leaf company
-  :straight t
-  :require t
-  :custom ((company-minimum-prefix-length . 2)
-	   (company-selection-wrap-around . t))
-  :bind (company-active-map
-	 ("M-n" . nil)
-	 ("M-p" . nil)
-	 ("C-n" . company-select-next)
-	 ("C-p" . company-select-previous)
-	 ("C-h" . nil))
-  :config
-  (delete '(company-dabbrev-code company-gtags company-etags company-keywords) company-backends)
-  (add-to-list 'company-backends '(company-dabbrev-code company-capf company-gtags company-etags company-keywords))
-  (global-company-mode))
-
 (leaf smartparens
   :straight t
   :require t
@@ -66,6 +50,7 @@
 
 (leaf eglot
   :straight t
+  :after project
   :hook ((eglot-managed-mode-hook . company-mode)
 	 (eglot-managed-mode-hook . yas-minor-mode)
 	 (c-mode-hook . eglot-ensure)
@@ -81,6 +66,25 @@
   :defer-config
   (add-to-list 'eglot-server-programs '(rustic-mode . ("rust-analyzer")))
   (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) "ruby-lsp")))
+
+(leaf company
+  :straight t
+  :after project
+  :custom ((company-minimum-prefix-length . 2)
+	   (company-selection-wrap-around . t))
+  ;; init後にロードしないと、project.elのloadタイミングの問題でエラー↓を踏むことがある。
+  ;; File mode specification error: (error Feature "project" is now provided by a different file /path/to/straight/build/project/project.elc)
+  ;; 参考: https://github.com/joaotavora/eglot/discussions/1436
+  :hook (after-init-hook . global-company-mode)
+  :bind (company-active-map
+	 ("M-n" . nil)
+	 ("M-p" . nil)
+	 ("C-n" . company-select-next)
+	 ("C-p" . company-select-previous)
+	 ("C-h" . nil))
+  :config
+  (delete '(company-dabbrev-code company-gtags company-etags company-keywords) company-backends)
+  (add-to-list 'company-backends '(company-dabbrev-code company-capf company-gtags company-etags company-keywords)))
 
 (leaf smart-jump*
   :config
