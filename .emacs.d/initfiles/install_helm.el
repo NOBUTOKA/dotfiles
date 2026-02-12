@@ -1,6 +1,7 @@
 (leaf helm
   :straight t
   :require t
+  :global-minor-mode t
   :bind* (("C-;". helm-mini)
 	  ("C-x C-f". helm-find-files)
 	  ("M-x". helm-M-x)
@@ -33,7 +34,6 @@
       :coerce #'intern-soft
       :action #'command-execute)
     "Emacs commands history")
-  (helm-mode 1)
 
   (leaf helm-projectile
     :straight t

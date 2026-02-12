@@ -22,14 +22,17 @@
 	     )
        ))
     )
+
   (leaf cmake-mode
     :straight t
     :mode "CMakeLists\\.txt\\'" "\\.cmake\\'"))
 
-(leaf julia*
+(leaf *julia
   :config
   (leaf julia-mode :straight t)
+
   (leaf julia-repl :straight t)
+
   (leaf eglot-jl
     :straight t
     :hook (julia-mode-hook . eglot-jl-init)))
@@ -54,8 +57,10 @@
   :bind ((plantuml-mode-map
 	  ("C-c C-c" . plantuml-preview-current-block))))
 
-(leaf python*
+(leaf *python
+  :config
   (leaf python-mode :straight t)
+
   (leaf auto-virtualenvwrapper
     :straight t
     :hook (python-mode-hook . auto-virtualenvwrapper-activate)))

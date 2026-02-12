@@ -8,20 +8,13 @@
 	(remove "-i" exec-path-from-shell-arguments))
   (exec-path-from-shell-initialize))
 
-(leaf keyfreq
-  :straight t
-  :require t
-  :config
-  (keyfreq-mode 1)
-  (keyfreq-autosave-mode 1))
-
 (leaf smartparens
   :straight t
   :require t
+  :global-minor-mode smartparens-global-mode
   :config
   (sp-pair "「" "」")
-  (sp-pair "『" "』")
-  (smartparens-global-mode t))
+  (sp-pair "『" "』"))
 
 ;; lazy-loadされる(はずの)もの
 (leaf real-auto-save
@@ -89,7 +82,7 @@
   (delete '(company-dabbrev-code company-gtags company-etags company-keywords) company-backends)
   (add-to-list 'company-backends '(company-dabbrev-code company-capf company-gtags company-etags company-keywords)))
 
-(leaf smart-jump*
+(leaf *smart-jump
   :config
   (leaf dumb-jump
     :straight t
@@ -104,7 +97,7 @@
 
 (leaf projectile :straight t)
 
-(leaf magit*
+(leaf *magit
   :config
   (leaf magit
     :straight t
