@@ -52,7 +52,7 @@
 ;; TODO: auto-virtualenvへの移行を検討
 (leaf auto-virtualenvwrapper
   :straight t
-  :hook (python-mode-hook . auto-virtualenvwrapper-activate)))
+  :hook (python-mode-hook . auto-virtualenvwrapper-activate))
 
 (leaf rustic
   :straight t
