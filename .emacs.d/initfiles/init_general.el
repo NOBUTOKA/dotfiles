@@ -16,10 +16,17 @@
 (set-language-environment "UTF-8")
 (prefer-coding-system 'utf-8-unix)
 
+;; Activate fido-vertical-mode (Fallback for vertico)
+(when (version<= "28" emacs-version)
+  (fido-vertical-mode 1)
+  (define-key icomplete-fido-mode-map (kbd "<DEL>") #'delete-backward-char)
+  (define-key icomplete-fido-mode-map (kbd "C-l") #'icomplete-fido-backward-updir))
+
 ;; Straight.el bootstrap
 (setq package-enable-at-startup nil)
 ;; Use develop branch beacuse of native-compilation compatibility.
 ;; https://jeffkreeftmeijer.com/emacs-straight-use-package/
+;; TODO: mainブランチに切り替えたときnative-compilationに影響が出ないか確認
 (setq straight-repository-branch "develop")
 ;; Divide build dir by emacs version.
 (setq straight-use-version-specific-build-dir t)
@@ -51,5 +58,5 @@
 (add-to-list 'auto-mode-alist '(".zshlocal" . sh-mode))
 
 (load (concat user-emacs-directory "initfiles/install_common.el"))
-(load (concat user-emacs-directory "initfiles/install_helm.el"))
+(load (concat user-emacs-directory "initfiles/install_completions.el"))
 (load (concat user-emacs-directory "initfiles/install_languages.el"))

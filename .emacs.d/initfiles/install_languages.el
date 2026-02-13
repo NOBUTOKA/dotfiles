@@ -49,13 +49,10 @@
   :bind ((plantuml-mode-map
 	  ("C-c C-c" . plantuml-preview-current-block))))
 
-(leaf *python
-  :config
-  (leaf python-mode :straight t)
-
-  (leaf auto-virtualenvwrapper
-    :straight t
-    :hook (python-mode-hook . auto-virtualenvwrapper-activate)))
+;; TODO: auto-virtualenvへの移行を検討
+(leaf auto-virtualenvwrapper
+  :straight t
+  :hook (python-mode-hook . auto-virtualenvwrapper-activate)))
 
 (leaf rustic
   :straight t
