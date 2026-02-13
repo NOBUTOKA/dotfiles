@@ -1,3 +1,5 @@
+;;; init_general.el --- -*- coding: utf-8; lexical-binding: t -*-
+
 ;; color theme config
 (load-theme 'tango-dark t)
 
@@ -11,17 +13,8 @@
   (load custom-file))
 
 ;;language config
-(setq default-buffer-file-coding-system 'utf-8-unix)
-(set-buffer-file-coding-system 'utf-8-unix)
-(set-terminal-coding-system 'utf-8-unix)
-(set-keyboard-coding-system 'utf-8-unix)
-(set-clipboard-coding-system 'utf-8-unix)
+(set-language-environment "UTF-8")
 (prefer-coding-system 'utf-8-unix)
-(set-language-environment 'utf-8)
-(set-default-coding-systems 'utf-8-unix)
-(setq locale-coding-system 'utf-8)
-;;dired文字コードの設定
-(setq dired-default-file-coding-system 'utf-8-unix)
 
 ;; Straight.el bootstrap
 (setq package-enable-at-startup nil)
@@ -56,9 +49,6 @@
 (add-to-list 'auto-mode-alist '("\\.xconf\\'" . conf-xdefaults-mode))
 ;; bind sh-mode with .zshlocal
 (add-to-list 'auto-mode-alist '(".zshlocal" . sh-mode))
-
-;; disable-bell
-(setq ring-bell-function 'ignore)
 
 (load (concat user-emacs-directory "initfiles/install_common.el"))
 (load (concat user-emacs-directory "initfiles/install_helm.el"))

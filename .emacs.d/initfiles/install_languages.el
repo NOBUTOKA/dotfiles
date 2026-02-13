@@ -1,9 +1,10 @@
+;;; install_languages.el --- -*- coding: utf-8; lexical-binding: t -*-
+
 (leaf *clang
   :config
   (leaf cc-mode
     :hook ((c-mode-hook . cc-mode-init)
-	   (c++-mode-hook . cc-mode-init)
-	   (c++-mode-hook . c++-mode-hooks))
+	   (c++-mode-hook . cc-mode-init))
     :config
     (defun cc-mode-init ()
       (c-set-style "stroustrup")
@@ -12,16 +13,7 @@
       (setq c-auto-newline nil)
       (setq c-hungry-delete-key nil)
       (setq c-basic-offset 4)
-      (setq tab-width 4)
-      )
-    (defun c++-mode-hooks()
-      (font-lock-add-keywords
-       nil '(
-	     ("\\<\\(alignof\\|alignas\\|constexpr\\|decltype\\|noexcept\\|nullptr\\|static_assert\\|thread_local\\|override\\|final\\)\\>"
-	      . 'font-lock-keyword-face)
-	     )
-       ))
-    )
+      (setq tab-width 4)))
 
   (leaf cmake-mode
     :straight t
@@ -84,4 +76,5 @@
 	   (bibtex-command . "upbibtex")
 	   (dviprint-command-format . "dvipdfmx"))
   :hook ((yatex-mode-hook . (lambda () (auto-fill-mode -1)))
-	 (yatex-mode-hook . yas-global-mode)))
+	 (yatex-mode-hook . yas-minor-mode)))
+

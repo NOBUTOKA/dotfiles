@@ -1,3 +1,5 @@
+;;; install_helm.el --- -*- coding: utf-8; lexical-binding: t -*-
+
 (leaf helm
   :straight t
   :require t

@@ -1,3 +1,5 @@
+;;; install_common.el --- -*- coding: utf-8; lexical-binding: t -*-
+
 ;; 即座にrequireされるもの
 (leaf exec-path-from-shell
   :if (memq system-type '(gnu/linux darwin))
