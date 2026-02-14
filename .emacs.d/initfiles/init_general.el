@@ -23,12 +23,6 @@
   (define-key icomplete-fido-mode-map (kbd "C-l") #'icomplete-fido-backward-updir))
 
 ;; Straight.el bootstrap
-(setq package-enable-at-startup nil)
-;; Use develop branch beacuse of native-compilation compatibility.
-;; https://jeffkreeftmeijer.com/emacs-straight-use-package/
-;; TODO: mainブランチに切り替えたときnative-compilationに影響が出ないか確認
-(setq straight-repository-branch "develop")
-;; Divide build dir by emacs version.
 (setq straight-use-version-specific-build-dir t)
 (defvar bootstrap-version)
 (let ((bootstrap-file
