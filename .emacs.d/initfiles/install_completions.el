@@ -21,7 +21,30 @@
     :custom ((completion-styles . '(orderless flex basic))
 	     (completion-category-defaults . nil)
 	     (completion-category-overrides . '((file (styles partial-completion))))))
+
+  (leaf consult
+    :straight t
+    :hook (completion-list-mode-hook . consult-preview-at-point-mode)
+    :custom ((xref-show-xrefs-function . #'consult-xref)
+             (xref-show-definitions-function . #'consult-xref)
+             (consult-line-start-from-top . t))
+    :bind (([remap switch-to-buffer] . consult-buffer)
+	   ([remap project-switch-to-buffer] . consult-project-buffer)
+	   ([remap isearch-forward] . consult-line)
+	   ([remap goto-line] . consult-goto-line)
+           ([remap imenu] . consult-isearch-forward)
+	   ([remap yank-pop] . consult-yank-pop)
+           ("M-g f" . consult-flymake)))
+
+  (leaf embark-consult
+    :after (consult embark)
+    :straight t)
   )
+
+(leaf embark
+  :straight t
+  :bind (("C-." . embark-act)
+	 ("C-c C-." . embark-dwim)))
 
 (leaf *eglot
   :config

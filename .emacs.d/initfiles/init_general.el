@@ -1,10 +1,13 @@
 ;;; init_general.el --- -*- coding: utf-8; lexical-binding: t -*-
 
 ;; color theme config
-(load-theme 'tango-dark t)
+(load-theme 'modus-vivendi t)
 
-;; assign C-h as Backspace
-(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+;; save minibuffer history
+(savehist-mode 1)
+
+;; ;; assign C-h as Backspace
+;; (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
 ;; change custom-set-variables location
 (setq custom-file (locate-user-emacs-file "custom.el"))
