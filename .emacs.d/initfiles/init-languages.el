@@ -16,7 +16,7 @@
 	   ((c-mode-hook c++-mode-hook) . eglot-ensure)))
 
   (leaf cmake-mode
-    :straight t
+    :ensure t
     :mode "CMakeLists\\.txt\\'" "\\.cmake\\'"
     :hook (cmake-mode-hook . eglot-ensure)))
 
@@ -27,24 +27,24 @@
     (add-to-list 'eglot-server-programs '(csharp-mode . "csharp-ls"))))
 
 (leaf gnuplot-mode
-  :straight t
+  :ensure t
   :mode "\\.gp$")
 
 (leaf *julia
   :config
-  (leaf julia-mode :straight t)
+  (leaf julia-mode :ensure t)
 
-  (leaf julia-repl :straight t)
+  (leaf julia-repl :ensure t)
 
   (leaf eglot-jl
-    :straight t
+    :ensure t
     :hook ((julia-mode-hook . eglot-ensure)
 	   (julia-mode-hook . eglot-jl-init))))
 
-(leaf markdown-mode :straight t)
+(leaf markdown-mode :ensure t)
 
 (leaf plantuml-mode
-  :straight (plantuml-mode :type git :host github :repo "skuro/plantuml-mode")
+  :ensure t
   :mode "\.pu$"
   :custom (plantuml-output-type . "png")
 	   (plantuml-options . "-charset UTF-8")
@@ -57,14 +57,14 @@
 
   ;; TODO: auto-virtualenvへの移行を検討
   (leaf auto-virtualenvwrapper
-    :straight t
+    :ensure t
     :hook (python-mode-hook . auto-virtualenvwrapper-activate)))
 
 (leaf ruby
   :hook ((ruby-mode-hook ruby-ts-mode-hook) . eglot-ensure))
 
 (leaf rustic
-  :straight t
+  :ensure t
   :hook (rustic-mode-hook . eglot-ensure)
   :custom (rustic-lsp-client . 'eglot)
   :config
@@ -72,7 +72,7 @@
     (add-to-list 'eglot-server-programs '(rustic-mode . "rust-analyzer"))))
 
 (leaf yatex
-  :straight t
+  :ensure t
   :commands yatex-mode
   :mode (("\\.tex$" . yatex-mode)
          ("\\.ltx$" . yatex-mode)

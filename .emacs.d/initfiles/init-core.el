@@ -32,7 +32,7 @@
 
 (leaf exec-path-from-shell
   :if (memq system-type '(gnu/linux darwin))
-  :straight t
+  :ensure t
   :require t
   :config
   (setq exec-path-from-shell-arguments
@@ -40,7 +40,7 @@
   (exec-path-from-shell-initialize))
 
 (leaf smartparens
-  :straight t
+  :ensure t
   :require t
   :global-minor-mode smartparens-global-mode
   :config
@@ -48,12 +48,12 @@
   (sp-pair "『" "』"))
 
 (leaf real-auto-save
-  :straight t
+  :ensure t
   :custom (real-auto-save-interval . 60)
   :hook (prog-mode-hook . real-auto-save-mode))
 
 (leaf ddskk
-  :straight t
+  :ensure t
   :custom ((default-input-method . "japanese-skk")
 	   (skk-japanese-message-and-error . t)
 	   (skk-version-codename-ja . t)
@@ -67,9 +67,9 @@
 	 ("C-c C-j" . skk-mode)
 	 ("C-j" . skk-kakutei)))
 
-(leaf yasnippet :straight t)
+(leaf yasnippet :ensure t)
 
 (leaf magit
-  :straight t
+  :ensure t
   :custom (transient-default-level . 5)
   :bind ("C-x g" . magit-status))

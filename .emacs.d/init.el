@@ -36,6 +36,7 @@
 (straight-use-package 'leaf)
 (straight-use-package 'leaf-keywords)
 (leaf-keywords-init)
+(setq leaf-alias-keyword-alist '((:ensure . :straight)))
 
 (load (locate-user-emacs-file "initfiles/init-core.el"))
 (load (locate-user-emacs-file "initfiles/init-ui.el"))

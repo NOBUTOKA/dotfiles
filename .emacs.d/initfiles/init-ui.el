@@ -4,19 +4,18 @@
   :init
   (fido-vertical-mode -1)
   (fido-mode -1)
-  :straight t
+  :ensure t
   :bind (vertico-map
 	 ("C-l" . vertico-directory-delete-char))
   :custom (vertico-count . 15)
   :global-minor-mode t)
 
 (leaf marginalia
-  :straight t
+  :ensure t
   :global-minor-mode t)
 
 (leaf consult
-  :straight t
-  :hook (completion-list-mode-hook . consult-preview-at-point-mode)
+  :ensure t
   :custom ((xref-show-xrefs-function . #'consult-xref)
            (xref-show-definitions-function . #'consult-xref)
            (consult-line-start-from-top . t))
@@ -29,16 +28,16 @@
          ("M-g f" . consult-flymake)))
 
 (leaf embark
-  :straight t
+  :ensure t
   :bind (("C-." . embark-act)
 	 ("M-." . embark-dwim)))
 
 (leaf embark-consult
   :after (consult embark)
-  :straight t)
+  :ensure t)
 
 (leaf corfu
-  :straight t
+  :ensure t
   :preface
   (defun adv/corfu-insert-force-first-index ()
     "Corfuポップアップが表示された状態で何も選択せずcorfu-insertしたとき、最初の候補を選択する。"
