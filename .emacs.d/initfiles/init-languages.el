@@ -8,10 +8,10 @@
       (c-set-style "stroustrup")
       (c-set-offset 'access-label '/)
       (c-set-offset 'innamespace 0)
-      (setq c-auto-newline nil)
-      (setq c-hungry-delete-key nil)
-      (setq c-basic-offset 4)
-      (setq tab-width 4))
+      (setq-local c-auto-newline nil)
+      (setq-local c-hungry-delete-key nil)
+      (setq-local c-basic-offset 4)
+      (setq-local tab-width 4))
     :hook (((c-mode-hook c++-mode-hook) . cc-mode-init)
 	   ((c-mode-hook c++-mode-hook) . eglot-ensure)))
 
@@ -23,6 +23,7 @@
 (leaf c-sharp
   :hook (c-charp-mode-hook . eglot-ensure)
   :config
+  (eval-when-compile (require 'eglot))
   (with-eval-after-load 'eglot
     (add-to-list 'eglot-server-programs '(csharp-mode . "csharp-ls"))))
 
@@ -68,6 +69,7 @@
   :hook (rustic-mode-hook . eglot-ensure)
   :custom (rustic-lsp-client . 'eglot)
   :config
+  (eval-when-compile (require 'eglot))
   (with-eval-after-load 'eglot
     (add-to-list 'eglot-server-programs '(rustic-mode . "rust-analyzer"))))
 

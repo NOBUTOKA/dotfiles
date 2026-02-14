@@ -1,3 +1,5 @@
+;;; bootstrap-straight.el --- -*- coding: utf-8; lexical-binding: t -*-
+
 (setq straight-base-dir
       (expand-file-name "emacs"
                         (or (getenv "XDG_DATA_HOME")
