@@ -1,6 +1,35 @@
-;;; install_common.el --- -*- coding: utf-8; lexical-binding: t -*-
+;;; init-core.el --- -*- coding: utf-8; lexical-binding: t -*-
 
-;; 即座にrequireされるもの
+;; 
+;; 外部パッケージに依存しない設定
+;;
+
+(leaf savehist
+  :doc "Save minibuffer history"
+  :global-minor-mode t)
+
+(leaf flymake
+  :doc "A universal on-the-fly syntax checker"
+  :bind ((prog-mode-map
+          ("M-n" . flymake-goto-next-error)
+          ("M-p" . flymake-goto-prev-error))))
+
+(leaf custom-file
+  :custom `((custom-file . ,(locate-user-emacs-file "custom.el")))
+  :hook (after-init-hook . (lambda () (load custom-file nil))))
+
+;; bind Xdefaults-mode with .xconf file(e. g. urxvt.xconf)
+(leaf conf-xdefaults-mode
+  :mode "\\.xconf\\'")
+
+;; bind sh-mode with .zshlocal
+(leaf sh-mode
+  :mode ".zshlocal")
+
+;;
+;; 外部パッケージのインストールと設定
+;;
+
 (leaf exec-path-from-shell
   :if (memq system-type '(gnu/linux darwin))
   :straight t
@@ -18,7 +47,6 @@
   (sp-pair "「" "」")
   (sp-pair "『" "』"))
 
-;; lazy-loadされる(はずの)もの
 (leaf real-auto-save
   :straight t
   :custom (real-auto-save-interval . 60)
@@ -34,10 +62,7 @@
 	   (skk-use-color-cursor . t)
 	   (skk-indicator-use-cursor-color . t)
 	   (skk-server-host . "localhost")
-	   (skk-server-portnum . 1178)
-	   (skk-server-prog . "/usr/local/sbin/yaskkserv")
-	   (skk-server-jisyo . "~/.yaskkserv/SKK-JISYO.L.yaskkserv ~/.yaskkserv/SKK-JISYO.propernoun.yaskkserv")
-	   (skk-server-inhibit-startup-server . nil))
+	   (skk-server-portnum . 1178))
   :bind* (("<muhenkan>" . skk-mode)
 	 ("C-c C-j" . skk-mode)
 	 ("C-j" . skk-kakutei)))

@@ -14,5 +14,7 @@
           (lambda ()
             (setq gc-cons-threshold (* 16 1024 1024)))) ; 16MB
 
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 ;; disable-bell
 (setq ring-bell-function 'ignore)

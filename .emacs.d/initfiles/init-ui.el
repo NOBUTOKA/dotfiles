@@ -1,4 +1,4 @@
-;;; install_completions.el --- -*- coding: utf-8; lexical-binding: t -*-
+;;; init-ui.el --- -*- coding: utf-8; lexical-binding: t -*-
 
 (leaf *minibuf-completion
   :config

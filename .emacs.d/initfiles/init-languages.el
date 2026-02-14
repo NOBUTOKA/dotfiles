@@ -1,4 +1,4 @@
-;;; install_languages.el --- -*- coding: utf-8; lexical-binding: t -*-
+;;; init-languages.el --- -*- coding: utf-8; lexical-binding: t -*-
 
 (leaf *clang
   :config
@@ -75,3 +75,6 @@
   :hook ((yatex-mode-hook . (lambda () (auto-fill-mode -1)))
 	 (yatex-mode-hook . yas-minor-mode)))
 
+(leaf gnuplot-mode
+  :straight t
+  :mode "\\.gp$")
