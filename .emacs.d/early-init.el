@@ -3,6 +3,14 @@
 ;; early-init.elの読み込み検出
 (defvar early-init-loaded t)
 
+;; eln-cacheの置き場指定
+(when (featurep 'native-compile)
+  (setq native-comp-eln-load-path
+        (list (expand-file-name
+               "emacs/eln-cache/"
+               (or (getenv "XDG_CACHE_HOME")
+                   "~/.cache/")))))
+
 ;; パッケージはstraight.elに管理させる
 (setq package-enable-at-startup nil)
 
