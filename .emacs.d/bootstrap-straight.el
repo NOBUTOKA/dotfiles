@@ -6,7 +6,7 @@
                             "~/.local/share/")))
 
 (setq straight-build-dir
-      (expand-file-name "emacs/straight/build"
+      (expand-file-name (concat "emacs/straight/build-" emacs-version)
                         (or (getenv "XDG_CACHE_HOME")
                             "~/.cache/")))
 

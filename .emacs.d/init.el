@@ -17,7 +17,7 @@
 
 
 ;; color theme config
-(load-theme 'modus-vivendi t)
+(load-theme 'tango-dark t)
 
 ;;language config
 (set-language-environment "UTF-8")

@@ -29,7 +29,7 @@
 
 (leaf embark
   :ensure t
-  :bind (("C-." . embark-act)
+  :bind* (("C-." . embark-act)
 	 ("M-." . embark-dwim)))
 
 (leaf embark-consult

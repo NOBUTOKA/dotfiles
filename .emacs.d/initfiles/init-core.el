@@ -29,6 +29,15 @@
 ;;
 ;; 外部パッケージのインストールと設定
 ;;
+(leaf compile-angel
+  :ensure t
+  :custom (compile-angel-verbose . t)
+  :hook (emacs-lisp-mode-hook . compile-angel-on-save-local-mode)
+  :global-minor-mode compile-angel-on-load-mode)
+
+(leaf ef-themes
+  :ensure (ef-themes :host github :repo "protesilaos/ef-themes")
+  :config (load-theme 'ef-elea-dark t))
 
 (leaf exec-path-from-shell
   :if (memq system-type '(gnu/linux darwin))
