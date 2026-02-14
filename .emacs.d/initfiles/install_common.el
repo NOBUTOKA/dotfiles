@@ -44,8 +44,6 @@
 
 (leaf yasnippet :straight t)
 
-(leaf projectile :straight t)
-
 (leaf *magit
   :config
   (leaf magit

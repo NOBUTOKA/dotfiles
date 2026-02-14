@@ -44,14 +44,13 @@
 (leaf embark
   :straight t
   :bind (("C-." . embark-act)
-	 ("C-c C-." . embark-dwim)))
+	 ("M-." . embark-dwim)))
 
 (leaf *eglot
   :config
   (leaf eglot
     :straight t
-    :hook ((eglot-managed-mode-hook . company-mode)
-	   (eglot-managed-mode-hook . yas-minor-mode)
+    :hook ((eglot-managed-mode-hook . yas-minor-mode)
 	   (c-mode-hook . eglot-ensure)
 	   (c++-mode-hook . eglot-ensure)
 	   (cmake-mode-hook . eglot-ensure)
@@ -74,33 +73,29 @@
     :straight t
     :global-minor-mode t))
 
-(leaf company
-  :straight t
-  ;; companyが使うprojectをstraight版に強制しておかないと、ビルトイン版projectを読みに行き、
-  ;; 他のパッケージがprojectを読む際にstraight版を読もうとしてConflict死することがある。
-  :init (leaf project :straight t)
-  :custom ((company-minimum-prefix-length . 2)
-	   (company-selection-wrap-around . t))
-  :bind (company-active-map
-	 ("M-n" . nil)
-	 ("M-p" . nil)
-	 ("C-n" . company-select-next)
-	 ("C-p" . company-select-previous)
-	 ("C-h" . nil))
-  :global-minor-mode global-company-mode
+(leaf *region-completion
   :config
-  (delete '(company-dabbrev-code company-gtags company-etags company-keywords) company-backends)
-  (add-to-list 'company-backends '(company-dabbrev-code company-capf company-gtags company-etags company-keywords)))
-
-(leaf *smart-jump
-  :config
-  (leaf dumb-jump
+  (leaf corfu
     :straight t
-    :custom (dumb-jump-selector . 'helm))
+    :preface
+    (defun adv/corfu-insert-force-first-index ()
+      "Corfuポップアップが表示された状態で何も選択せずcorfu-insertしたとき、最初の候補を選択する。"
+      (when (< corfu--index 0)
+	(setq corfu--index 0)))
+    :advice (:before corfu-insert adv/corfu-insert-force-first-index)
+    :custom ((corfu-cycle . t)
+	     (corfu-quit-at-boundary . 'separator)
+	     (corfu-auto . t)
+	     (corfu-preselect . 'prompt))
+    :bind (corfu-map
+	   ("TAB" . completion-at-point)
+	   ("RET" . corfu-insert))
+    :global-minor-mode global-corfu-mode
+    )
 
-  (leaf smart-jump
+  (leaf cape
     :straight t
-    :commands (smart-jump-go smart-jump-back smart-jump-references)
-    :bind (("M-." . smart-jump-go)
-           ("M-," . smart-jump-back)
-           ("M-?" . smart-jump-references))))
+    :config
+    (leaf *cape-eglot-tweak
+      :after eglot
+      :advice (:around eglot-completion-at-point cape-wrap-buster))))
