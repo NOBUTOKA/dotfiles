@@ -3,9 +3,7 @@
 (leaf *clang
   :config
   (leaf cc-mode
-    :hook ((c-mode-hook . cc-mode-init)
-	   (c++-mode-hook . cc-mode-init))
-    :config
+    :preface
     (defun cc-mode-init ()
       (c-set-style "stroustrup")
       (c-set-offset 'access-label '/)
@@ -13,11 +11,24 @@
       (setq c-auto-newline nil)
       (setq c-hungry-delete-key nil)
       (setq c-basic-offset 4)
-      (setq tab-width 4)))
+      (setq tab-width 4))
+    :hook (((c-mode-hook c++-mode-hook) . cc-mode-init)
+	   ((c-mode-hook c++-mode-hook) . eglot-ensure)))
 
   (leaf cmake-mode
     :straight t
-    :mode "CMakeLists\\.txt\\'" "\\.cmake\\'"))
+    :mode "CMakeLists\\.txt\\'" "\\.cmake\\'"
+    :hook (cmake-mode-hook . eglot-ensure)))
+
+(leaf c-sharp
+  :hook (c-charp-mode-hook . eglot-ensure)
+  :config
+  (with-eval-after-load 'eglot
+    (add-to-list 'eglot-server-programs '(csharp-mode . "csharp-ls"))))
+
+(leaf gnuplot-mode
+  :straight t
+  :mode "\\.gp$")
 
 (leaf *julia
   :config
@@ -27,17 +38,8 @@
 
   (leaf eglot-jl
     :straight t
-    :hook (julia-mode-hook . eglot-jl-init)))
-
-(leaf doxymacs
-  :straight (doxymacs :type git :host github :repo "pniedzielski/doxymacs" :files ("lisp/*.el"))
-  :commands doxymax-mode
-  :hook (c-mode-common-hook . doxy-custom-c-mode-hook)
-  :config
-  (defun doxy-custom-c-mode-hook ()
-    (doxymacs-mode 1)
-    (setq doxymacs-doxygen-style "C++")
-    (setq doxymacs-command-character "@")))
+    :hook ((julia-mode-hook . eglot-ensure)
+	   (julia-mode-hook . eglot-jl-init))))
 
 (leaf markdown-mode :straight t)
 
@@ -49,14 +51,25 @@
   :bind ((plantuml-mode-map
 	  ("C-c C-c" . plantuml-preview-current-block))))
 
-;; TODO: auto-virtualenvへの移行を検討
-(leaf auto-virtualenvwrapper
-  :straight t
-  :hook (python-mode-hook . auto-virtualenvwrapper-activate))
+(leaf *python
+  (leaf python
+    :hook (python-mode-hook . eglot-ensure))
+
+  ;; TODO: auto-virtualenvへの移行を検討
+  (leaf auto-virtualenvwrapper
+    :straight t
+    :hook (python-mode-hook . auto-virtualenvwrapper-activate)))
+
+(leaf ruby
+  :hook ((ruby-mode-hook ruby-ts-mode-hook) . eglot-ensure))
 
 (leaf rustic
   :straight t
-  :custom (rustic-lsp-client . 'eglot))
+  :hook (rustic-mode-hook . eglot-ensure)
+  :custom (rustic-lsp-client . 'eglot)
+  :config
+  (with-eval-after-load 'eglot
+    (add-to-list 'eglot-server-programs '(rustic-mode . "rust-analyzer"))))
 
 (leaf yatex
   :straight t
@@ -74,7 +87,3 @@
 	   (dviprint-command-format . "dvipdfmx"))
   :hook ((yatex-mode-hook . (lambda () (auto-fill-mode -1)))
 	 (yatex-mode-hook . yas-minor-mode)))
-
-(leaf gnuplot-mode
-  :straight t
-  :mode "\\.gp$")

@@ -69,42 +69,7 @@
 
 (leaf yasnippet :straight t)
 
-(leaf *magit
-  :config
-  (leaf magit
-    :straight t
-    :custom (transient-default-level . 5)
-    :bind ("C-x g" . magit-status))
-
-  (leaf magit-gh-pulls :straight t)
-
-  (leaf magit-gitflow
-    :straight t
-    :hook (magit-mode-hook . turn-on-magit-gitflow))
-  )
-
-(leaf gnuplot-mode
+(leaf magit
   :straight t
-  :mode "\\.gp$")
-
-(leaf multi-term
-  :straight t
-  :bind (term-raw-map
-	 :package term-mode
-	 ("C-f" . term-send-forward-char)
-	 ("C-b" . term-send-backward-char)
-	 ("C-p" . term-send-previous-line)
-	 ("C-n" . term-send-next-line))
-  :config
-  (defun term-send-forward-char ()
-    (interactive)
-    (term-send-raw-string "\C-f"))
-  (defun term-send-backward-char ()
-    (interactive)
-    (term-send-raw-string "\C-b"))
-  (defun term-send-previous-line ()
-    (interactive)
-    (term-send-raw-string "\C-p"))
-  (defun term-send-next-line ()
-    (interactive)
-    (term-send-raw-string "\C-n")))
+  :custom (transient-default-level . 5)
+  :bind ("C-x g" . magit-status))

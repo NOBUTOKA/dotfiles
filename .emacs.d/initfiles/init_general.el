@@ -23,4 +23,5 @@
 
 (load (locate-user-emacs-file "initfiles/init-core.el"))
 (load (locate-user-emacs-file "initfiles/init-ui.el"))
+(load (locate-user-emacs-file "initfiles/init-completions.el"))
 (load (locate-user-emacs-file "initfiles/init-languages.el"))
