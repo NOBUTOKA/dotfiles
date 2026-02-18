@@ -20,8 +20,8 @@
     :mode "CMakeLists\\.txt\\'" "\\.cmake\\'"
     :hook (cmake-mode-hook . eglot-ensure)))
 
-(leaf c-sharp
-  :hook (c-charp-mode-hook . eglot-ensure)
+(leaf csharp
+  :hook (csharp-mode-hook . eglot-ensure)
   :config
   (eval-when-compile (require 'eglot))
   (with-eval-after-load 'eglot
@@ -43,6 +43,23 @@
 	   (julia-mode-hook . eglot-jl-init))))
 
 (leaf markdown-mode :ensure t)
+
+(leaf matlab-ts-mode
+  :ensure matlab-mode
+  :init
+  (defvar my/matlab-ls-path (expand-file-name "~/.local/share/MATLAB-language-server/out/index.js")
+    "Path to Matlab language server")
+  (defvar my/matlab-path nil "Path to Matlab")
+  :hook (matlab-ts-mode-hook . eglot-ensure)
+  :mode ("\\.m\\'" . matlab-mode)
+  :config
+  (eval-when-compile (require 'eglot))
+  (with-eval-after-load 'eglot
+    (let* ((matlab-lsp-args
+	  (if (bound-and-true-p my/matlab-path)
+	      (list "node" my/matlab-ls-path "--stdio" "--matlabInstallPath" my/matlab-path)
+	    (list "node" my/matlab-ls-path "--stdio"))))
+    (add-to-list 'eglot-server-programs `((matlab-mode matlab-ts-mode) . ,matlab-lsp-args)))))
 
 (leaf plantuml-mode
   :ensure t
