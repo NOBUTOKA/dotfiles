@@ -29,8 +29,9 @@
     (add-hook 'completion-at-point-functions #'cape-tex 0 t)
     (let ((super-capf (cape-capf-super
                        #'cape-keyword
-	         #'cape-dabbrev
-	         #'cape-sgml)))
+	               #'cape-dabbrev
+	               #'cape-sgml
+		       #'cape-emoji)))
       (add-hook 'completion-at-point-functions super-capf 0 t)))
   :hook (prog-mode-hook . my/prog-cape-setup)
   :config

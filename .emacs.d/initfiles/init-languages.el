@@ -56,16 +56,16 @@
   (eval-when-compile (require 'eglot))
   (with-eval-after-load 'eglot
     (let* ((matlab-lsp-args
-	  (if (bound-and-true-p my/matlab-path)
-	      (list "node" my/matlab-ls-path "--stdio" "--matlabInstallPath" my/matlab-path)
-	    (list "node" my/matlab-ls-path "--stdio"))))
-    (add-to-list 'eglot-server-programs `((matlab-mode matlab-ts-mode) . ,matlab-lsp-args)))))
+	    (if (bound-and-true-p my/matlab-path)
+		(list "node" my/matlab-ls-path "--stdio" "--matlabInstallPath" my/matlab-path)
+	      (list "node" my/matlab-ls-path "--stdio"))))
+      (add-to-list 'eglot-server-programs `((matlab-mode matlab-ts-mode) . ,matlab-lsp-args)))))
 
 (leaf plantuml-mode
   :ensure t
   :mode "\.pu$"
-  :custom (plantuml-output-type . "png")
-	   (plantuml-options . "-charset UTF-8")
+  :custom ((plantuml-output-type . "png")
+	   (plantuml-options . "-charset UTF-8"))
   :bind ((plantuml-mode-map
 	  ("C-c C-c" . plantuml-preview-current-block))))
 

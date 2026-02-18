@@ -31,7 +31,6 @@
 ;;
 (leaf compile-angel
   :ensure t
-  :custom (compile-angel-verbose . t)
   :hook (emacs-lisp-mode-hook . compile-angel-on-save-local-mode)
   :global-minor-mode compile-angel-on-load-mode)
 
