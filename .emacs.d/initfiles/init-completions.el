@@ -23,7 +23,18 @@
 
 (leaf cape
   :ensure t
+  :preface
+  (defun my/prog-cape-setup ()
+    (add-hook 'completion-at-point-functions #'cape-file 0 t)
+    (add-hook 'completion-at-point-functions #'cape-tex 0 t)
+    (let ((super-capf (cape-capf-super
+                       #'cape-keyword
+	         #'cape-dabbrev
+	         #'cape-sgml)))
+      (add-hook 'completion-at-point-functions super-capf 0 t)))
+  :hook (prog-mode-hook . my/prog-cape-setup)
   :config
   (leaf *cape-eglot-tweak
     :after eglot
-    :advice (:around eglot-completion-at-point cape-wrap-buster)))
+    :advice ((:around eglot-completion-at-point cape-wrap-buster)
+             (:around eglot-completion-at-point cape-wrap-nonexclusive))))
