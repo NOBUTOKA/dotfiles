@@ -52,33 +52,75 @@
 
 (leaf markdown-mode :ensure t)
 
-(leaf matlab-ts-mode
-  :ensure matlab-mode
+(leaf *matlab
   :init
-  (defvar my/matlab-ls-path (expand-file-name "~/.local/share/MATLAB-language-server/out/index.js")
-    "Path to Matlab language server")
-  (defvar my/matlab-path nil "Path to Matlab")
   (defvar my/matlab-lsp-use-docker nil)
-  (defvar my/matlab-lsp-docker-image "matlab-for-lsp:R2023b-lic")
-  (defun my/matlab-lsp-create-docker-command (_)
-      (let ((mount-path (expand-file-name (if (project-current)
+  (defvar my/matlab-shell-use-docker t)
+  :config
+  (leaf matlab-mode
+    :ensure t
+    :hook ((matlab-mode-hook matlab-ts-mode-hook) . eglot-ensure)
+    :mode ("\\.m\\'" . matlab-mode))
+
+  (leaf *matlab-eglot-docker
+    :when my/matlab-lsp-use-docker
+    :init
+    (defvar my/matlab-lsp-docker-image "matlab-for-lsp:R2023b-lic")
+    (defun my/matlab-lsp-create-docker-command (_)
+      (let ((project-path (expand-file-name (if (project-current)
 					      (project-root (project-current))
 					    default-directory))))
-	(list "docker" "run" "--interactive" "--init" "-v" (concat mount-path ":" mount-path) my/matlab-lsp-docker-image)))
-  :hook ((matlab-mode-hook matlab-ts-mode-hook) . eglot-ensure)
-  :mode ("\\.m\\'" . matlab-mode)
-  :custom (matlab-shell-command-switches . '("-nodesktop" "-nosplash" "-licmode" "onlinelicensing"))
-  :config
-  (eval-when-compile (require 'eglot))
-  (with-eval-after-load 'eglot
-    (if my/matlab-lsp-use-docker
-	(add-to-list 'eglot-server-programs '((matlab-mode matlab-ts-mode) . my/matlab-lsp-create-docker-command))
+	(list "docker" "run" "-i" "--rm" "--init" "-v" (concat project-path ":" project-path) my/matlab-lsp-docker-image)))
+    :config
+    (eval-when-compile (require 'eglot))
+    (with-eval-after-load 'eglot
+      (add-to-list 'eglot-server-programs '((matlab-mode matlab-ts-mode) . my/matlab-lsp-create-docker-command))))
+
+  (leaf *matlab-eglot
+    :unless my/matlab-lsp-use-docker
+    :init
+    (defvar my/matlab-ls-path (expand-file-name "~/.local/share/MATLAB-language-server/out/index.js"))
+    (defvar my/matlab-path nil)
+    :config
+    (eval-when-compile (require 'eglot))
+    (with-eval-after-load 'eglot
       (let* ((matlab-lsp-args
 	      (if (bound-and-true-p my/matlab-path)
 		  (list "node" my/matlab-ls-path "--stdio" "--matlabInstallPath" my/matlab-path "--" "-licmode onlinelicensing")
 		(list "node" my/matlab-ls-path "--stdio" "--matlabLaunchCommandArgs" "--" "-licmode onlinelicensing"))))
-	(add-to-list 'eglot-server-programs `((matlab-mode matlab-ts-mode) . ,matlab-lsp-args)))
-      )))
+	(add-to-list 'eglot-server-programs `((matlab-mode matlab-ts-mode) . ,matlab-lsp-args)))))
+
+  (leaf *matlab-shell-docker
+    :when my/matlab-shell-use-docker
+    :init
+    (defvar my/matlab-shell-docker-image "matlab:R2023b-lic")
+    (defun my/matlab-shell-create-docker-args ()
+      (let* ((project-path (expand-file-name (if (project-current)
+						 (project-root (project-current))
+					       default-directory))))
+	(setq matlab-shell-command-switches
+	      (list "run" "-it" "--rm" "--init" "-v" "/tmp/.X11-unix/:/tmp/.X11-unix" "-e" "DISPLAY"
+		    "-v" (concat project-path ":" project-path) my/matlab-shell-docker-image
+		    "-nodesktop" "-nosplash" "-sd" project-path))))
+    (defun my/matlab-shell-send-tab ()
+      (interactive)
+      (let ((proc (get-buffer-process (current-buffer))))
+	(unless (and proc (process-live-p proc))
+	  (error "No live MATLAB process associated with this buffer"))
+	(process-send-string proc "\t")))
+    :advice (:before matlab-shell my/matlab-shell-create-docker-args)
+    :bind (matlab-shell-mode-map
+	   :package matlab-shell
+	   ("TAB" . my/matlab-shell-send-tab))
+    :hook (matlab-shell-mode-hook . (lambda () (setq-local completion-at-point-functions nil)))
+    :custom ((matlab-shell-command . "docker")
+	     (matlab-shell-tab-use-company . nil)
+	     (matlab-shell-ask-MATLAB-for-completions . nil)))
+
+  (leaf *matlab-shell
+    :unless my/matlab-shell-use-docker
+    :custom (matlab-shell-command-switches . '("-nodesktop" "-nosplash" "-licmode" "onlinelicensing")))
+  )
 
 (leaf plantuml-mode
   :ensure t
