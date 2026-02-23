@@ -33,7 +33,7 @@
 	               #'cape-sgml
 		       #'cape-emoji)))
       (add-hook 'completion-at-point-functions super-capf 0 t)))
-  :hook (prog-mode-hook . my/prog-cape-setup)
+  :hook ((prog-mode-hook conf-mode-hook) . my/prog-cape-setup)
   :config
   (leaf *cape-eglot-tweak
     :after eglot

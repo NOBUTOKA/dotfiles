@@ -27,6 +27,14 @@
   (with-eval-after-load 'eglot
     (add-to-list 'eglot-server-programs '(csharp-mode . "csharp-ls"))))
 
+(leaf *conf-modes
+  :config
+  (leaf ssh-config-mode
+    :ensure t
+    :custom (ssh-config-mode-indent . 4)))
+
+(leaf dockerfile-mode :ensure t)
+
 (leaf gnuplot-mode
   :ensure t
   :mode "\\.gp$")
