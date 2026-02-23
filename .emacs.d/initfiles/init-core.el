@@ -81,3 +81,6 @@
   :ensure t
   :custom (transient-default-level . 5)
   :bind ("C-x g" . magit-status))
+
+(leaf vterm
+  :ensure t)

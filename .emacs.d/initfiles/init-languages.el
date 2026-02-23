@@ -66,7 +66,7 @@
     :when my/matlab-lsp-use-docker
     :init
     (defvar my/matlab-lsp-docker-image "matlab-for-lsp:R2023b-lic")
-    (defun my/matlab-lsp-create-docker-command (_)
+    (defun my/matlab-lsp-create-docker-cmd (_)
       (let ((project-path (expand-file-name (if (project-current)
 					      (project-root (project-current))
 					    default-directory))))
@@ -74,7 +74,7 @@
     :config
     (eval-when-compile (require 'eglot))
     (with-eval-after-load 'eglot
-      (add-to-list 'eglot-server-programs '((matlab-mode matlab-ts-mode) . my/matlab-lsp-create-docker-command))))
+      (add-to-list 'eglot-server-programs '((matlab-mode matlab-ts-mode) . my/matlab-lsp-create-docker-cmd))))
 
   (leaf *matlab-eglot
     :unless my/matlab-lsp-use-docker
@@ -91,31 +91,25 @@
 	(add-to-list 'eglot-server-programs `((matlab-mode matlab-ts-mode) . ,matlab-lsp-args)))))
 
   (leaf *matlab-shell-docker
+    ;; dockerとmatlab-shellの相性が割とよろしくないので、諦めてvtermを使う
     :when my/matlab-shell-use-docker
     :init
     (defvar my/matlab-shell-docker-image "matlab:R2023b-lic")
-    (defun my/matlab-shell-create-docker-args ()
+    (defun my/matlab-vterm-shell-create-docker-cmd ()
       (let* ((project-path (expand-file-name (if (project-current)
 						 (project-root (project-current))
 					       default-directory))))
-	(setq matlab-shell-command-switches
-	      (list "run" "-it" "--rm" "--init" "-v" "/tmp/.X11-unix/:/tmp/.X11-unix" "-e" "DISPLAY"
-		    "-v" (concat project-path ":" project-path) my/matlab-shell-docker-image
-		    "-nodesktop" "-nosplash" "-sd" project-path))))
-    (defun my/matlab-shell-send-tab ()
+	(list "docker" "run" "-it" "--rm" "--init" "-v" "/tmp/.X11-unix/:/tmp/.X11-unix" "-e" "DISPLAY"
+	      "-v" (concat project-path ":" project-path) "-w" project-path my/matlab-shell-docker-image)))
+    (defun my/matlab-vterm-shell ()
+      "Open a vterm shell as a MATLAB docker"
       (interactive)
-      (let ((proc (get-buffer-process (current-buffer))))
-	(unless (and proc (process-live-p proc))
-	  (error "No live MATLAB process associated with this buffer"))
-	(process-send-string proc "\t")))
-    :advice (:before matlab-shell my/matlab-shell-create-docker-args)
-    :bind (matlab-shell-mode-map
-	   :package matlab-shell
-	   ("TAB" . my/matlab-shell-send-tab))
-    :hook (matlab-shell-mode-hook . (lambda () (setq-local completion-at-point-functions nil)))
-    :custom ((matlab-shell-command . "docker")
-	     (matlab-shell-tab-use-company . nil)
-	     (matlab-shell-ask-MATLAB-for-completions . nil)))
+      (require 'vterm)
+      (let ((docker-cmd (string-join (my/matlab-vterm-shell-create-docker-cmd) " ")))
+	(let ((vterm-shell-org vterm-shell))
+	  (setq vterm-shell docker-cmd)
+	  (vterm)
+	  (setq vterm-shell vterm-shell-org)))))
 
   (leaf *matlab-shell
     :unless my/matlab-shell-use-docker
