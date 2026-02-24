@@ -60,17 +60,18 @@
   (leaf matlab-mode
     :ensure t
     :hook ((matlab-mode-hook matlab-ts-mode-hook) . eglot-ensure)
-    :mode ("\\.m\\'" . matlab-mode))
+    :mode ("\\.m\\'" . matlab-ts-mode))
 
   (leaf *matlab-eglot-docker
     :when my/matlab-lsp-use-docker
     :init
-    (defvar my/matlab-lsp-docker-image "matlab-for-lsp:R2023b-lic")
+    (defvar my/matlab-lsp-docker-image "matlab:R2023b-lsp")
     (defun my/matlab-lsp-create-docker-cmd (_)
       (let ((project-path (expand-file-name (if (project-current)
-					      (project-root (project-current))
-					    default-directory))))
-	(list "docker" "run" "-i" "--rm" "--init" "-v" (concat project-path ":" project-path) my/matlab-lsp-docker-image)))
+						(project-root (project-current))
+					      default-directory))))
+	(list "docker" "run" "-i" "--rm" "--init" "-v" "matlab-home:/home/matlab"
+	      "-v" (concat project-path ":" project-path) my/matlab-lsp-docker-image)))
     :config
     (eval-when-compile (require 'eglot))
     (with-eval-after-load 'eglot
@@ -87,19 +88,20 @@
       (let* ((matlab-lsp-args
 	      (if (bound-and-true-p my/matlab-path)
 		  (list "node" my/matlab-ls-path "--stdio" "--matlabInstallPath" my/matlab-path "--" "-licmode onlinelicensing")
-		(list "node" my/matlab-ls-path "--stdio" "--matlabLaunchCommandArgs" "--" "-licmode onlinelicensing"))))
+		(list "node" my/matlab-ls-path "--stdio" "--" "-licmode onlinelicensing"))))
 	(add-to-list 'eglot-server-programs `((matlab-mode matlab-ts-mode) . ,matlab-lsp-args)))))
 
   (leaf *matlab-shell-docker
     ;; dockerとmatlab-shellの相性が割とよろしくないので、諦めてvtermを使う
     :when my/matlab-shell-use-docker
     :init
-    (defvar my/matlab-shell-docker-image "matlab:R2023b-lic")
+    (defvar my/matlab-shell-docker-image "matlab:R2023b-shell")
     (defun my/matlab-vterm-shell-create-docker-cmd ()
       (let* ((project-path (expand-file-name (if (project-current)
 						 (project-root (project-current))
 					       default-directory))))
-	(list "docker" "run" "-it" "--rm" "--init" "-v" "/tmp/.X11-unix/:/tmp/.X11-unix" "-e" "DISPLAY"
+	(list "docker" "run" "-it" "--rm" "--init"
+	      "-v" "/tmp/.X11-unix/:/tmp/.X11-unix" "-e" "DISPLAY" "-v" "matlab-home:/home/matlab"
 	      "-v" (concat project-path ":" project-path) "-w" project-path my/matlab-shell-docker-image)))
     (defun my/matlab-vterm-shell ()
       "Open a vterm shell as a MATLAB docker"
