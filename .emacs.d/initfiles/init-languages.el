@@ -107,11 +107,8 @@
       "Open a vterm shell as a MATLAB docker"
       (interactive)
       (require 'vterm)
-      (let ((docker-cmd (string-join (my/matlab-vterm-shell-create-docker-cmd) " ")))
-	(let ((vterm-shell-org vterm-shell))
-	  (setq vterm-shell docker-cmd)
-	  (vterm)
-	  (setq vterm-shell vterm-shell-org)))))
+      (let ((vterm-shell (string-join (my/matlab-vterm-shell-create-docker-cmd) " ")))
+	(vterm "*MATLAB*"))))
 
   (leaf *matlab-shell
     :unless my/matlab-shell-use-docker

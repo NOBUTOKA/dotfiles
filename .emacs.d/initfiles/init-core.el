@@ -3,20 +3,28 @@
 ;; 
 ;; 外部パッケージに依存しない設定
 ;;
+(leaf custom-file
+  :custom `((custom-file . ,(locate-user-emacs-file "custom.el")))
+  :hook (after-init-hook . (lambda () (load custom-file nil))))
+
+(leaf auto-save
+  :doc "Auto save buffer"
+  :custom `(auto-save-list-file-prefix . ,(expand-file-name "auto-save-list/.saves-" cache-home-dir)))
 
 (leaf savehist
   :doc "Save minibuffer history"
+  :custom `(savehist-file . ,(expand-file-name "history" cache-home-dir))
   :global-minor-mode t)
+
+(leaf project
+  :doc "A generic infrastructure for dealing with projects"
+  :custom `(project-list-file . ,(expand-file-name "projects" cache-home-dir)))
 
 (leaf flymake
   :doc "A universal on-the-fly syntax checker"
   :bind ((prog-mode-map
           ("M-n" . flymake-goto-next-error)
           ("M-p" . flymake-goto-prev-error))))
-
-(leaf custom-file
-  :custom `((custom-file . ,(locate-user-emacs-file "custom.el")))
-  :hook (after-init-hook . (lambda () (load custom-file nil))))
 
 ;; bind Xdefaults-mode with .xconf file(e. g. urxvt.xconf)
 (leaf conf-xdefaults-mode

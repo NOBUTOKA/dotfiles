@@ -1,3 +1,6 @@
-/.emacs.d/straight/
 *~
 *.elc
+/.emacs.d/custom.el
+/.emacs.d/init_*_bef.el
+/.emacs.d/init_*_aft.el
+/.emacs.d/tree-sitter

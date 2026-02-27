@@ -1,14 +1,9 @@
 ;;; bootstrap-straight.el --- -*- coding: utf-8; lexical-binding: t -*-
 
-(setq straight-base-dir
-      (expand-file-name "emacs"
-                        (or (getenv "XDG_DATA_HOME")
-                            "~/.local/share/")))
+(setq straight-base-dir data-home-dir)
 
 (setq straight-build-dir
-      (expand-file-name (concat "emacs/straight/build-" emacs-version)
-                        (or (getenv "XDG_CACHE_HOME")
-                            "~/.cache/")))
+      (expand-file-name (concat "straight/build-" emacs-version) cache-home-dir))
 
 (setq straight-use-version-specific-build-dir t)
 

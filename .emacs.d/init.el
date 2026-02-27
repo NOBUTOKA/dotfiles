@@ -11,10 +11,12 @@
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
 ;; initialize in specific host
-(let* ((init_host (concat user-emacs-directory "init_" (system-name) "_bef.el")))
-  (when (file-exists-p init_host)
-    (load-file init_host)))
-
+(let* ((init_host (locate-user-emacs-file (format "init_%s_bef.el" system-name))))
+  (unless (file-exists-p init_host)
+    (with-temp-file init_host
+      (insert (format ";;; %s --- -*- coding: utf-8; lexical-binding: t -*-\n\n"
+                      (file-name-nondirectory init_host)))))
+  (load-file init_host))
 
 ;; color theme config
 (load-theme 'tango-dark t)
@@ -43,6 +45,9 @@
 (load (locate-user-emacs-file "initfiles/init-completions.el"))
 (load (locate-user-emacs-file "initfiles/init-languages.el"))
 
-(let* ((init_host (concat user-emacs-directory "init_" (system-name) "_aft.el")))
-  (when (file-exists-p init_host)
-    (load-file init_host)))
+(let* ((init_host (locate-user-emacs-file (format "init_%s_aft.el" system-name))))
+  (unless (file-exists-p init_host)
+    (with-temp-file init_host
+      (insert (format ";;; %s --- -*- coding: utf-8; lexical-binding: t -*-\n\n"
+                      (file-name-nondirectory init_host)))))
+  (load-file init_host))
